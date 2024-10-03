@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1kjak70pkeyf"]
+
+[ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://scenes/card.tscn" id="1_y21kq"]
+
+[node name="JO" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Card" parent="." instance=ExtResource("1_y21kq")]
+position = Vector2(-6, 2)

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4fxyppywr8fx"]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_5jjbx"]
+[ext_resource type="Texture2D" uid="uid://di5i1atheyh6v" path="res://icon.svg" id="2_2vtp4"]
+
+[node name="CardSlot" type="Node2D"]
+
+[node name="Card" type="Node2D" parent="."]
+script = ExtResource("1_5jjbx")
+
+[node name="Button" type="Button" parent="Card"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 10.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Card"]
+scale = Vector2(0.15625, 0.234375)
+texture = ExtResource("2_2vtp4")
+
+[connection signal="button_down" from="Card/Button" to="Card" method="_on_button_button_down"]
+[connection signal="button_up" from="Card/Button" to="Card" method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Card/Button" to="Card" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Card/Button" to="Card" method="_on_button_mouse_exited"]

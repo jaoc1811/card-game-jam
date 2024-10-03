@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://d1kjak70pkeyf"]
+[gd_scene load_steps=3 format=3 uid="uid://d1kjak70pkeyf"]
+
+[ext_resource type="Script" path="res://scripts/card_slots.gd" id="1_2yb36"]
+[ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://scenes/card.tscn" id="1_y21kq"]
 
 [node name="JO" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="CardSlots" type="Node2D" parent="."]
+script = ExtResource("1_2yb36")
+
+[node name="Card" parent="CardSlots" instance=ExtResource("1_y21kq")]
+
+[node name="Card2" parent="CardSlots" instance=ExtResource("1_y21kq")]
+
+[node name="Card3" parent="CardSlots" instance=ExtResource("1_y21kq")]
+
+[node name="Card4" parent="CardSlots" instance=ExtResource("1_y21kq")]
