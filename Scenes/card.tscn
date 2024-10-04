@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4fxyppywr8fx"]
+[gd_scene load_steps=4 format=3 uid="uid://b4fxyppywr8fx"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_5jjbx"]
 [ext_resource type="Texture2D" uid="uid://di5i1atheyh6v" path="res://icon.svg" id="2_2vtp4"]
 
-[node name="CardSlot" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yods"]
+size = Vector2(20, 30)
 
-[node name="Card" type="Node2D" parent="."]
+[node name="Card" type="Node2D"]
 script = ExtResource("1_5jjbx")
 
-[node name="Button" type="Button" parent="Card"]
+[node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,12 +22,20 @@ offset_right = 10.0
 offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Card"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15625, 0.234375)
 texture = ExtResource("2_2vtp4")
 
-[connection signal="button_down" from="Card/Button" to="Card" method="_on_button_button_down"]
-[connection signal="button_up" from="Card/Button" to="Card" method="_on_button_button_up"]
-[connection signal="mouse_entered" from="Card/Button" to="Card" method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Card/Button" to="Card" method="_on_button_mouse_exited"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7yods")
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
