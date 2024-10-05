@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://dpgdrdibyfl3e"]
+[gd_scene load_steps=7 format=3 uid="uid://dpgdrdibyfl3e"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_ktli5"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_7tky1"]
+[ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://Scenes/card.tscn" id="3_n72pe"]
+[ext_resource type="Script" path="res://scripts/hang_around.gd" id="4_xy5tj"]
+[ext_resource type="Script" path="res://scripts/reverse_flow.gd" id="5_u6lx6"]
+[ext_resource type="Script" path="res://scripts/robin_hood.gd" id="6_e21ax"]
 
 [node name="SV" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("players")]
+unique_name_in_owner = true
+script = ExtResource("1_ktli5")
+players = [NodePath("../Player"), NodePath("../Player2")]
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("2_7tky1")
+
+[node name="Player2" type="Node" parent="."]
+script = ExtResource("2_7tky1")
+passive_clock = 15
+
+[node name="Hang Around Card" parent="." instance=ExtResource("3_n72pe")]
+script = ExtResource("4_xy5tj")
+
+[node name="Reverse Flow Card" parent="." instance=ExtResource("3_n72pe")]
+script = ExtResource("5_u6lx6")
+
+[node name="Robin Hood Card" parent="." instance=ExtResource("3_n72pe")]
+script = ExtResource("6_e21ax")

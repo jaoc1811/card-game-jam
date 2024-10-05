@@ -1,4 +1,7 @@
+class_name Card
 extends Node2D
+
+@onready var game_manager: Node = %GameManager
 
 var is_hovering = false
 var is_dragging = false
@@ -51,3 +54,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("deck"):
 		is_inside_deck = false
+
+func play(player_position: int):
+	pass
