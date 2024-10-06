@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/copilot/plugin.cfg", "res://addons/gdscript_formatter/plugin.cfg")
 
 [global_group]
 
