@@ -2,6 +2,7 @@ extends Node
 
 # TODO: add hand, clock
 
+@onready var clock_node = $Clock
 @export var passive_clock : int = 30: # Minutes
 	set(new_value):
 		passive_clock = new_value
@@ -11,8 +12,9 @@ extends Node
 # 1 point = 1 minute in clock
 @export var clock : int = 0:
 	set(new_value):
-		clock = clamp(new_value, 0, 720)
-		# TODO: update clock in UI
+		new_value = clamp(new_value, 0, 720)
+		await clock_node.get_node("ClockHand").move_hand(clock, new_value)
+		clock = new_value
 		print(self.name, " clock ", clock)
 
 @export var round_points : int = 0:
