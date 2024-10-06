@@ -15,8 +15,12 @@ func _ready() -> void:
 
 func set_position_and_rotation(card_index: int):
 	var tween = get_tree().create_tween()
-	tween.tween_property(cards[card_index], "position", cards_positions[card_index], 0.1).set_ease(Tween.EASE_OUT)
-	tween.tween_property(cards[card_index], "rotation_degrees", cards_rotations[card_index], 0.1).set_ease(Tween.EASE_OUT)
+	var slot_position = cards_positions[card_index]
+	var slot_rotation = cards_rotations[card_index]
+	cards[card_index].slot_position = slot_position
+	cards[card_index].slot_rotation = slot_rotation
+	tween.tween_property(cards[card_index], "position", slot_position, 0.1).set_ease(Tween.EASE_OUT)
+	tween.tween_property(cards[card_index], "rotation_degrees", slot_rotation, 0.1).set_ease(Tween.EASE_OUT)
 	cards[card_index].is_draggable = true
 
 

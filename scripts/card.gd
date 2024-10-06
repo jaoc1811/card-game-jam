@@ -2,15 +2,16 @@ class_name Card
 extends Node2D
 
 @onready var game_manager: Node = %GameManager
+@onready var shadow: Polygon2D = $Shadow
 
 var is_hovering = false
 var is_dragging = false
 var is_draggable = false
-var is_inside_deck = false
+var is_inside_playable_area = false
 var offset: Vector2
-var initial_position: Vector2
-var initial_rotation: int
-var deck_ref
+var slot_position: Vector2
+var slot_rotation: int
+var playable_area
 
 
 func _process(delta):
@@ -26,21 +27,23 @@ func _on_button_button_down() -> void:
 	if is_draggable:
 		is_dragging = true
 		offset = get_global_mouse_position() - position
-		initial_position = position
-		initial_rotation = rotation_degrees
 		var tween = get_tree().create_tween()
+		self.z_index = 1
 		tween.tween_property(self, "rotation_degrees", 0, 0.1).set_ease(Tween.EASE_OUT)
+		tween.tween_property(shadow, "position", Vector2(shadow.position.x, shadow.position.y + 4), 0.1).set_ease(Tween.EASE_OUT)
 
 
 func _on_button_button_up() -> void:
 	if is_dragging:
 		is_dragging = false
 		var tween = get_tree().create_tween()
-		if is_inside_deck:
-			tween.tween_property(self, "global_position", deck_ref.position, 0.1).set_ease(Tween.EASE_OUT)
+		tween.tween_property(shadow, "position", Vector2(0, 0), 0.1).set_ease(Tween.EASE_OUT)
+		self.z_index = 0
+		if is_inside_playable_area:
+			tween.tween_property(self, "global_position", playable_area.position, 0.1).set_ease(Tween.EASE_OUT)
 		else:
-			tween.tween_property(self, "position", initial_position, 0.1).set_ease(Tween.EASE_OUT)
-			tween.tween_property(self, "rotation_degrees", initial_rotation, 0.1).set_ease(Tween.EASE_OUT)
+			tween.tween_property(self, "position", slot_position, 0.1).set_ease(Tween.EASE_OUT)
+			tween.tween_property(self, "rotation_degrees", slot_rotation, 0.1).set_ease(Tween.EASE_OUT)
 
 
 func _on_button_mouse_entered() -> void:
@@ -54,13 +57,13 @@ func _on_button_mouse_exited() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("deck"):
-		is_inside_deck = true
-		deck_ref = body
+		is_inside_playable_area = true
+		playable_area = body
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("deck"):
-		is_inside_deck = false
+		is_inside_playable_area = false
 
 
 func play(player_position: int):
