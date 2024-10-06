@@ -20,12 +20,7 @@ func _process(delta: float) -> void:
 			if data.message == SignalType.lobby:
 				join_lobby(data.id, data.lobby_Key)
 			
-			# Update clients with new state
-			send_package(null, {
-				"id": data.id,
-				"message": SignalType.update,
-				"lobbies": lobbies
-			})
+			update_client(data.id)
 
 
 func start():
@@ -59,8 +54,17 @@ func join_lobby(client_id: int, lobby_key: String):
 			"host": lobbies[lobby_key].host,
 			"player": lobbies[lobby_key].players[client_id]
 		})
-		
-		
+
+func update_client(id):
+	var lobbies_dict = {}
+	for lobby in lobbies.keys():
+		lobbies_dict[lobby] = lobbies[lobby].to_dict()
+	
+	send_package(null, {
+		"id": id,
+		"message": SignalType.update,
+		"lobbies": lobbies_dict
+	})
 
 # UI
 func _on_start_server_button_down() -> void:

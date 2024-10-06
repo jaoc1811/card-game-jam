@@ -33,8 +33,8 @@ func update_ui(data):
 	var lobbies = data["lobbies"]
 	for lobby_key in lobbies.keys():
 		var lobby = lobbies[lobby_key]
-		# var players = lobby.players
-		item_list.add_item(lobby_key)
+		var players = lobby.players
+		item_list.add_item(lobby_key + " (" + str(players.size()) + ") ")
 
 # UI
 func _on_start_client_button_down() -> void:
