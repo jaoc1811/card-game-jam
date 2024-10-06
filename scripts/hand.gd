@@ -1,11 +1,11 @@
 extends Node2D
 
-var cards: Array[Node]
+@export var cards: Array[Node2D] = []
 @export var cards_positions: Array[Vector2]
 @export var cards_rotations: Array[int]
 
 
-func set_position_and_rotation(card_index: int):
+func deal_card(card_index: int):
 	await get_tree().create_timer(0.1).timeout
 	var tween = get_tree().create_tween()
 	var slot_position = cards_positions[card_index]
