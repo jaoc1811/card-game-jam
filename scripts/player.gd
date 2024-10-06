@@ -1,6 +1,4 @@
-extends Node
-
-# TODO: add hand, clock
+extends Node2D
 
 @onready var clock_node = $Clock
 @export var passive_clock : int = 30: # Minutes
