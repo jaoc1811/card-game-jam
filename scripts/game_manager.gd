@@ -59,10 +59,15 @@ func deal_cards(player_position: int) -> void:
 	for card_index in range(cards_in_hand, cards_per_player):
 		next_card_type = deck.pop_front()
 		next_card = base_card.instantiate()
+
 		hand.add_child(next_card)
 		next_card.global_position = deck_node.position
 		next_card.name = next_card_type
+		# Set script and references lost when loading new script
 		next_card.set_script(card_type_scripts[next_card_type])
+		next_card.game_manager = self
+		next_card.shadow = next_card.get_node("Shadow")
+		
 		hand.cards.append(next_card)
 		await hand.deal_card(card_index)
 
@@ -71,31 +76,36 @@ func deal_cards(player_position: int) -> void:
 	#if run_once:
 		#run_once = false
 		## Deal cards
-		#deal_cards(0)
+		#await deal_cards(0)
 		#await get_tree().create_timer(2).timeout
-		#deal_cards(1)
-
+		#await deal_cards(1)
+		#await get_tree().create_timer(2).timeout
 		## Round 1
-		#print(player_detail)
+		##print(player_detail)
 		#end_turn(0, hang_around_card)
+		#await get_tree().create_timer(1).timeout
 		#end_turn(1, hang_around_card)
+		#await get_tree().create_timer(1).timeout
 		#print(player_detail)
 		#end_round()
-		#print(player_detail)
+		##print(player_detail)
 		#print("FIN RONDA 1")
+		#await get_tree().create_timer(3).timeout
 		#print()
-		#
-		## Round 1
-		#print(player_detail)
+#
+		### Round 2
+		##print(player_detail)
 		#end_turn(0, hang_around_card)
+		#await get_tree().create_timer(1).timeout
 		#end_turn(1, robin_hood_card)
+		#await get_tree().create_timer(1).timeout
 		#print(player_detail)
 		#end_round()
-		#print(player_detail)
+		##print(player_detail)
 		#print("FIN RONDA 2")
 		#print()
 #
-		## Round 2
+		## Round 3
 		#print(player_detail)
 		#end_turn(0, hang_around_card)
 		#end_turn(1, reverse_flow_card)
