@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://cspys13qu3qwh"]
+
+[ext_resource type="Script" path="res://scripts/Multiplayer/peer.gd" id="1_2xwat"]
+[ext_resource type="Script" path="res://scripts/Multiplayer/server.gd" id="2_bofr6"]
+[ext_resource type="Script" path="res://scripts/Multiplayer/client.gd" id="3_3qu23"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6mmig"]
+properties/0/path = NodePath("Home/Lobby:process_mode")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Multiplayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Peer" type="Node" parent="."]
+script = ExtResource("1_2xwat")
+
+[node name="Server" type="Node" parent="Peer"]
+script = ExtResource("2_bofr6")
+
+[node name="Client" type="Node" parent="Peer"]
+script = ExtResource("3_3qu23")
+
+[node name="Home" type="Node" parent="."]
+
+[node name="StartServer" type="Button" parent="Home"]
+offset_right = 190.0
+offset_bottom = 87.0
+text = "Start Server"
+
+[node name="StartClient" type="Button" parent="Home"]
+offset_left = 961.0
+offset_right = 1152.0
+offset_bottom = 87.0
+text = "Start Client"
+
+[node name="SendTestToServer" type="Button" parent="Home"]
+offset_left = 961.0
+offset_top = 94.0
+offset_right = 1152.0
+offset_bottom = 129.0
+text = "Test"
+
+[node name="SendTestToClient" type="Button" parent="Home"]
+offset_top = 98.0
+offset_right = 190.0
+offset_bottom = 129.0
+text = "Test
+"
+
+[node name="Lobby" type="Node" parent="Home"]
+
+[node name="Lobbies" type="ItemList" parent="Home/Lobby"]
+offset_left = 86.0
+offset_top = 378.0
+offset_right = 1071.0
+offset_bottom = 614.0
+
+[node name="JoinButton" type="Button" parent="Home/Lobby"]
+offset_left = 881.0
+offset_top = 318.0
+offset_right = 1071.0
+offset_bottom = 349.0
+text = "Join Lobby
+"
+
+[node name="LobbyKey" type="LineEdit" parent="Home/Lobby"]
+offset_left = 86.0
+offset_top = 318.0
+offset_right = 836.0
+offset_bottom = 349.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6mmig")
+
+[connection signal="button_down" from="Home/StartServer" to="Peer/Server" method="_on_start_server_button_down"]
+[connection signal="button_down" from="Home/StartClient" to="Peer/Client" method="_on_start_client_button_down"]
+[connection signal="button_down" from="Home/SendTestToServer" to="Peer/Client" method="_on_send_package_button_down"]
+[connection signal="button_down" from="Home/SendTestToClient" to="Peer/Server" method="_on_send_test_to_client_button_down"]
+[connection signal="button_down" from="Home/Lobby/JoinButton" to="Peer/Client" method="_on_join_button_button_down"]
