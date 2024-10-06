@@ -29,7 +29,7 @@ var _version := "v0.2.0"
 
 ## How many characters per line to allow.
 ## 每行允许的最大字符数量。
-@export var line_length := 175:
+@export var line_length := 100:
 	set(v):
 		line_length = v
 		emit_changed()

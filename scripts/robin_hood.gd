@@ -1,3 +1,4 @@
+class_name robin_hood
 extends Card
 
 func play(player_position: int):

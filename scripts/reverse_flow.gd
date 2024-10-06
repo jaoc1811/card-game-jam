@@ -1,3 +1,4 @@
+class_name reverse_flow
 extends Card
 
 func play(player_position: int):
