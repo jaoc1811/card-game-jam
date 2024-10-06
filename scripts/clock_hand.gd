@@ -21,5 +21,5 @@ func _process(delta: float) -> void:
 func move_hand(start: int, end: int):
 	var tween = get_tree().create_tween()
 	var duration = abs(end-start)
-	var rotation = end * (360/12)
+	var rotation = end * (360/720)
 	tween.tween_property(self, "rotation_degrees", rotation, duration)
