@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://pyo32ix4ns1e"]
+[gd_scene load_steps=3 format=3 uid="uid://pyo32ix4ns1e"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_2ayps"]
+[ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://Scenes/clock.tscn" id="1_o8w7d"]
 
 [node name="CR" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("1_2ayps")
+
+[node name="Clock" parent="Player" instance=ExtResource("1_o8w7d")]

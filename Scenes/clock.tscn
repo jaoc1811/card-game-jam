@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwlhuox3mc4k"]
+
+[ext_resource type="Texture2D" uid="uid://ddgtdccpc0fv4" path="res://Clock Body.png" id="1_femva"]
+[ext_resource type="Script" path="res://scripts/clock_hand.gd" id="2_njmok"]
+[ext_resource type="Texture2D" uid="uid://cewbw8cr37itm" path="res://Hand.svg" id="3_i3a6w"]
+
+[node name="Clock" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_femva")
+
+[node name="ClockHand" type="Node2D" parent="."]
+script = ExtResource("2_njmok")
+
+[node name="Sprite2D" type="Sprite2D" parent="ClockHand"]
+position = Vector2(0, -51)
+rotation = -1.5708
+scale = Vector2(0.06, 0.04)
+texture = ExtResource("3_i3a6w")
