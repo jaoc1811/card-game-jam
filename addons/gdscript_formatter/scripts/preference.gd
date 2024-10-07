@@ -36,7 +36,7 @@ var _version := "v0.2.0"
 
 ## If true, will format on save.
 ## 如果开启，将在脚本保存时进行格式化。
-@export var format_on_save := true:
+@export var format_on_save := false:
 	set(v):
 		format_on_save = v
 		emit_changed()

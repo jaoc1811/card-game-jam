@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds26kfofiymge"]
+
+[ext_resource type="PackedScene" uid="uid://dqr0duh0wktdr" path="res://Scenes/deck.tscn" id="1_3dq6o"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a25bm"]
+[ext_resource type="Script" path="res://scripts/hand.gd" id="2_s7kpw"]
+[ext_resource type="AudioStream" uid="uid://dm4bwtlk67qsb" path="res://sounds/deal_card.wav" id="3_s3hhl"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="4_oiryx"]
+[ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://Scenes/card.tscn" id="4_wcdla"]
+[ext_resource type="Texture2D" uid="uid://di5i1atheyh6v" path="res://icon.svg" id="4_x3qqv"]
+[ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://Scenes/clock.tscn" id="5_0bued"]
+
+[node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("players", "deck_node", "start_turn_position", "end_turn_position")]
+unique_name_in_owner = true
+script = ExtResource("1_a25bm")
+players = [NodePath("../Player"), NodePath("../Player2")]
+deck_type = {
+"catch_up": 3,
+"hang_around": 2,
+"reverse_flow": 2,
+"robin_hood": 3,
+"time_investment": 3
+}
+deck_node = NodePath("../Deck")
+start_turn_position = NodePath("../StartTurnPosition")
+end_turn_position = NodePath("../EndTurnPosition")
+
+[node name="DealCardSFX" type="AudioStreamPlayer2D" parent="GameManager"]
+stream = ExtResource("3_s3hhl")
+volume_db = -31.689
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Deck" type="Node2D" parent="."]
+position = Vector2(55, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Deck"]
+scale = Vector2(0.15625, 0.234375)
+texture = ExtResource("4_x3qqv")
+
+[node name="StartTurnPosition" type="Node2D" parent="."]
+position = Vector2(140, 0)
+
+[node name="EndTurnPosition" type="Node2D" parent="."]
+position = Vector2(-140, 0)
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("4_oiryx")
+
+[node name="PlayableArea" parent="Player" instance=ExtResource("1_3dq6o")]
+z_index = -1
+position = Vector2(-75, 0)
+
+[node name="Clock" parent="Player" instance=ExtResource("5_0bued")]
+position = Vector2(-75, -40)
+scale = Vector2(0.12, 0.12)
+
+[node name="Hand" type="Node2D" parent="Player"]
+position = Vector2(0, 40)
+script = ExtResource("2_s7kpw")
+cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
+cards_rotations = Array[int]([-10, -5, 5, 10])
+
+[node name="Player2" type="Node2D" parent="."]
+script = ExtResource("4_oiryx")
+
+[node name="PlayableArea" parent="Player2" instance=ExtResource("1_3dq6o")]
+z_index = -1
+position = Vector2(-75, 0)
+
+[node name="Clock" parent="Player2" instance=ExtResource("5_0bued")]
+position = Vector2(-25, -40)
+scale = Vector2(0.12, 0.12)
+
+[node name="Hand" type="Node2D" parent="Player2"]
+position = Vector2(0, 40)
+script = ExtResource("2_s7kpw")
+cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
+cards_rotations = Array[int]([-10, -5, 5, 10])
+
+[node name="Player3" type="Node2D" parent="."]
+visible = false
+script = ExtResource("4_oiryx")
+
+[node name="PlayableArea" parent="Player3" instance=ExtResource("1_3dq6o")]
+z_index = -1
+position = Vector2(-75, 0)
+
+[node name="Clock" parent="Player3" instance=ExtResource("5_0bued")]
+position = Vector2(25, -40)
+scale = Vector2(0.12, 0.12)
+
+[node name="Hand" type="Node2D" parent="Player3"]
+position = Vector2(0, 40)
+script = ExtResource("2_s7kpw")
+cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
+cards_rotations = Array[int]([-10, -5, 5, 10])
+
+[node name="Player4" type="Node2D" parent="."]
+visible = false
+script = ExtResource("4_oiryx")
+
+[node name="PlayableArea" parent="Player4" instance=ExtResource("1_3dq6o")]
+z_index = -1
+position = Vector2(-75, 0)
+
+[node name="Clock" parent="Player4" instance=ExtResource("5_0bued")]
+position = Vector2(75, -40)
+scale = Vector2(0.12, 0.12)
+
+[node name="Hand" type="Node2D" parent="Player4"]
+position = Vector2(0, 40)
+script = ExtResource("2_s7kpw")
+cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
+cards_rotations = Array[int]([-10, -5, 5, 10])
+
+[node name="Hand" type="Node2D" parent="." node_paths=PackedStringArray("cards")]
+visible = false
+position = Vector2(0, 40)
+script = ExtResource("2_s7kpw")
+cards = [NodePath("Card"), NodePath("Card2"), NodePath("Card3"), NodePath("Card4")]
+cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
+cards_rotations = Array[int]([-10, -5, 5, 10])
+
+[node name="Card" parent="Hand" instance=ExtResource("4_wcdla")]
+
+[node name="Card2" parent="Hand" instance=ExtResource("4_wcdla")]
+
+[node name="Card3" parent="Hand" instance=ExtResource("4_wcdla")]
+
+[node name="Card4" parent="Hand" instance=ExtResource("4_wcdla")]

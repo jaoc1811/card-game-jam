@@ -13,14 +13,12 @@ zoom = Vector2(5, 5)
 [node name="deck" parent="." instance=ExtResource("3_ji3t1")]
 z_index = -1
 
-[node name="Hand" type="Node2D" parent="." node_paths=PackedStringArray("cards", "start_turn_position", "end_turn_position")]
+[node name="Hand" type="Node2D" parent="." node_paths=PackedStringArray("cards")]
 position = Vector2(0, 40)
 script = ExtResource("1_2yb36")
 cards = [NodePath("Card"), NodePath("Card2"), NodePath("Card3"), NodePath("Card4")]
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
-start_turn_position = NodePath("../StartTurnPosition")
-end_turn_position = NodePath("../EndTurnPosition")
 
 [node name="DealCardSFX" type="AudioStreamPlayer2D" parent="Hand"]
 stream = ExtResource("3_5ry3x")

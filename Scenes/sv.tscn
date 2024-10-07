@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_ktli5"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_7tky1"]
 [ext_resource type="Script" path="res://scripts/hand.gd" id="3_b33qs"]
-[ext_resource type="PackedScene" path="res://Scenes/clock.tscn" id="3_lj767"]
+[ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://Scenes/clock.tscn" id="3_lj767"]
 [ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://Scenes/card.tscn" id="3_n72pe"]
 [ext_resource type="Script" path="res://scripts/hang_around.gd" id="4_xy5tj"]
 [ext_resource type="AudioStream" uid="uid://dm4bwtlk67qsb" path="res://sounds/deal_card.wav" id="5_c4jvr"]
