@@ -1,11 +1,11 @@
 extends Node2D
 
+@onready var game_manager: Node = %GameManager
 @export var cards: Array[Node2D] = []
 @export var cards_positions: Array[Vector2]
 @export var cards_rotations: Array[int]
 @export var start_turn_position: Node2D
 @export var end_turn_position: Node2D
-@onready var deal_card_sfx: AudioStreamPlayer2D = $DealCardSFX
 
 
 func deal_card(card_index: int):
@@ -18,7 +18,7 @@ func deal_card(card_index: int):
 
 
 func set_card_position_and_rotation(card: Node2D, position: Vector2, rotation: int):
-	deal_card_sfx.play()
+	game_manager.deal_card_sfx.play()
 	await get_tree().create_timer(0.1).timeout
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "position", position, 0.1).set_ease(Tween.EASE_OUT)
@@ -32,12 +32,17 @@ func start_turn():
 		await deal_card(card_index)
 
 
-func end_turn():
+func end_turn(card_played_index: int):
+	cards.pop_at(card_played_index)
+	var card_played = get_child(card_played_index) # First card for testing
+	remove_child(card_played)
+	# Animation
 	for card_index in len(cards):
 		await set_card_position_and_rotation(cards[card_index], end_turn_position.position, 0)
 
+	return card_played
 
-func _on_button_pressed() -> void:
-	start_turn()
-	await get_tree().create_timer(2).timeout
-	end_turn()
+#func _on_button_pressed() -> void:
+	#start_turn()
+	#await get_tree().create_timer(2).timeout
+	#end_turn()

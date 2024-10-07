@@ -23,6 +23,9 @@ var card_type_scripts = {
 	"time_loan": load("res://scripts/time_loan.gd")
 }
 
+# Audio Manager
+@onready var deal_card_sfx: AudioStreamPlayer2D = $DealCardSFX
+
 # Either 1 or -1
 @export var reverse_flow : int = 1:
 	set(new_value):
@@ -84,9 +87,15 @@ func reshuffle_deck() -> void:
 
 func start_turn(player: int):
 	# Runs each turn except for the first round
+	var hand: Node2D = players[player].get_node("Hand")
+	await hand.start_turn()
+	# TODO: delete
+	#await get_tree().create_timer(1.5).timeout
 	await deal_cards(player)
 
-func end_turn(player: int, card_played: Node):
+func end_turn(player: int, card_played_index: int):
+	var hand: Node2D = players[player].get_node("Hand")
+	var card_played = await hand.end_turn(card_played_index)
 	player_detail[player]["card_played"] = card_played
 	# TODO: add to play history
 	played_cards.append(card_played.get_script().get_global_name())
@@ -126,6 +135,9 @@ func end_round():
 
 	# Return to initial values
 	for player in player_detail:
+		# Delete card node
+		if is_instance_valid(player["card_played"]):
+			player["card_played"].queue_free()
 		player["card_played"] = null
 		player["player"].round_points = 0
 
@@ -146,29 +158,16 @@ func end_round():
 		#await get_tree().create_timer(1).timeout
 		#var hand
 		#var next_card
-		#var played_cards_nodes
 		#for round in rounds:
-			#played_cards_nodes = []
 			#for player_position in len(players):
 				#await start_turn(player_position)
-				#hand = players[player_position].get_node("Hand")
-				#hand.cards.pop_front()
-				#print("Player ", player_position," playing... Hand: ", hand.get_children())
-				#next_card = hand.get_child(0) # First card for testing
-				#hand.remove_child(next_card)
-				##print("Player ", player_position," playing card: ", next_card.name)
-				#end_turn(player_position, next_card)
-				#played_cards_nodes.append(next_card)
-				##print("Player ", player_position," hand at the end of turn: ", hand.get_children())
-				#await get_tree().create_timer(1).timeout
+				#await get_tree().create_timer(1.5).timeout
+				#await end_turn(player_position, 0)
+				#await get_tree().create_timer(1.5).timeout
 			#print("Played cards this round: ", played_cards)
-			#end_round()
+			#await end_round()
 			#print("Discarded cards this round: ", discard_pile)
 			#print("Deck before end round: ", deck)
 			#print("END ROUND ", round)
-			## Delete card for testing
-			#for card in len(played_cards_nodes):
-				#if is_instance_valid(played_cards_nodes[card]):
-					#played_cards_nodes[card].queue_free()
 			#await get_tree().create_timer(2).timeout
 			#print()
