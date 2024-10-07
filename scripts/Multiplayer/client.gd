@@ -1,12 +1,14 @@
 extends Peer
 
+# Data
 var id = 0
+var player = null
 
 # UI
 var item_list = null
 
 func _ready() -> void:
-	item_list = get_node("/root/Multiplayer/Home/Lobby/Lobbies")
+	item_list = get_node("/root/Multiplayer/Home/LobbyBoard/Lobbies")
 	pass
 
 func _process(delta: float) -> void:
@@ -20,6 +22,9 @@ func _process(delta: float) -> void:
 			
 			if data.message == SignalType.id:
 				id = data.id
+			
+			if data.message == SignalType.lobby:
+				player = data.player
 				
 			if data.message == SignalType.update:
 				update_ui(data)
@@ -29,12 +34,19 @@ func start(ip):
 	print("Client started at ws://" + address + ":" + port)
 
 func update_ui(data):
-	item_list.clear()
-	var lobbies = data["lobbies"]
-	for lobby_key in lobbies.keys():
-		var lobby = lobbies[lobby_key]
-		var players = lobby.players
-		item_list.add_item(lobby_key + " (" + str(players.size()) + ") ")
+	# Scene selection
+	if player.state == Player.State.waiting:
+		get_node("/root/Multiplayer/Lobby").visible = true
+		get_node("/root/Multiplayer/Home").visible = false
+	
+	# Lobby list
+	if get_node("/root/Multiplayer/Home").visible == true:
+		item_list.clear()
+		var lobbies = data["lobbies"]
+		for lobby_key in lobbies.keys():
+			var lobby = lobbies[lobby_key]
+			var players = lobby.players
+			item_list.add_item(lobby_key + " (" + str(players.size()) + ") ")
 
 # UI
 func _on_start_client_button_down() -> void:
@@ -51,5 +63,14 @@ func _on_join_button_button_down() -> void:
 	send_package(null, {
 		"id": id,
 		"message": SignalType.lobby,
-		"lobby_Key": get_node("/root/Multiplayer/Home/Lobby/LobbyKey").text
+		"lobby_key": get_node("/root/Multiplayer/Home/LobbyBoard/LobbyKey").text
+	})
+
+
+func _on_ready_button_toggled(toggled_on: bool) -> void:
+	send_package(null, {
+		"id": id,
+		"message": SignalType.player_ready,
+		"lobby_key": player.lobby_key,
+		"value": toggled_on
 	})

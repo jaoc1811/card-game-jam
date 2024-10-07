@@ -1,13 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cspys13qu3qwh"]
+[gd_scene load_steps=4 format=3 uid="uid://cspys13qu3qwh"]
 
 [ext_resource type="Script" path="res://scripts/Multiplayer/peer.gd" id="1_2xwat"]
 [ext_resource type="Script" path="res://scripts/Multiplayer/server.gd" id="2_bofr6"]
 [ext_resource type="Script" path="res://scripts/Multiplayer/client.gd" id="3_3qu23"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6mmig"]
-properties/0/path = NodePath("Home/Lobby:process_mode")
-properties/0/spawn = true
-properties/0/replication_mode = 1
 
 [node name="Multiplayer" type="Control"]
 layout_mode = 3
@@ -28,7 +23,8 @@ script = ExtResource("2_bofr6")
 [node name="Client" type="Node" parent="Peer"]
 script = ExtResource("3_3qu23")
 
-[node name="Home" type="Node" parent="."]
+[node name="Home" type="Control" parent="."]
+anchors_preset = 0
 
 [node name="StartServer" type="Button" parent="Home"]
 offset_right = 190.0
@@ -55,15 +51,16 @@ offset_bottom = 129.0
 text = "Test
 "
 
-[node name="Lobby" type="Node" parent="Home"]
+[node name="LobbyBoard" type="Control" parent="Home"]
+anchors_preset = 0
 
-[node name="Lobbies" type="ItemList" parent="Home/Lobby"]
+[node name="Lobbies" type="ItemList" parent="Home/LobbyBoard"]
 offset_left = 86.0
 offset_top = 378.0
 offset_right = 1071.0
 offset_bottom = 614.0
 
-[node name="JoinButton" type="Button" parent="Home/Lobby"]
+[node name="JoinButton" type="Button" parent="Home/LobbyBoard"]
 offset_left = 881.0
 offset_top = 318.0
 offset_right = 1071.0
@@ -71,17 +68,79 @@ offset_bottom = 349.0
 text = "Join Lobby
 "
 
-[node name="LobbyKey" type="LineEdit" parent="Home/Lobby"]
+[node name="LobbyKey" type="LineEdit" parent="Home/LobbyBoard"]
 offset_left = 86.0
 offset_top = 318.0
 offset_right = 836.0
 offset_bottom = 349.0
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_6mmig")
+[node name="Lobby" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+
+[node name="Players" type="ItemList" parent="Lobby"]
+offset_left = 312.0
+offset_top = 201.0
+offset_right = 795.0
+offset_bottom = 467.0
+
+[node name="ReadyButton" type="CheckButton" parent="Lobby"]
+offset_left = 751.0
+offset_top = 165.0
+offset_right = 795.0
+offset_bottom = 195.0
+
+[node name="ReadyText" type="RichTextLabel" parent="Lobby"]
+offset_left = 699.0
+offset_top = 168.0
+offset_right = 765.0
+offset_bottom = 192.0
+text = "Ready?
+"
+
+[node name="RoomText" type="RichTextLabel" parent="Lobby"]
+offset_left = 319.0
+offset_top = 145.0
+offset_right = 372.0
+offset_bottom = 169.0
+text = "Room:
+"
+
+[node name="PlayersText" type="RichTextLabel" parent="Lobby"]
+offset_left = 319.0
+offset_top = 172.0
+offset_right = 391.0
+offset_bottom = 196.0
+text = "Players:
+"
+
+[node name="StartGameButton" type="Button" parent="Lobby"]
+offset_left = 420.0
+offset_top = 478.0
+offset_right = 516.0
+offset_bottom = 509.0
+text = "Start Game
+"
+
+[node name="LeaveRoomButton" type="Button" parent="Lobby"]
+offset_left = 583.0
+offset_top = 478.0
+offset_right = 686.0
+offset_bottom = 509.0
+text = "Leave Room
+"
+
+[node name="RoomKey" type="RichTextLabel" parent="Lobby"]
+offset_left = 390.0
+offset_top = 145.0
+offset_right = 570.0
+offset_bottom = 169.0
+text = "Room Key
+"
 
 [connection signal="button_down" from="Home/StartServer" to="Peer/Server" method="_on_start_server_button_down"]
 [connection signal="button_down" from="Home/StartClient" to="Peer/Client" method="_on_start_client_button_down"]
 [connection signal="button_down" from="Home/SendTestToServer" to="Peer/Client" method="_on_send_package_button_down"]
 [connection signal="button_down" from="Home/SendTestToClient" to="Peer/Server" method="_on_send_test_to_client_button_down"]
-[connection signal="button_down" from="Home/Lobby/JoinButton" to="Peer/Client" method="_on_join_button_button_down"]
+[connection signal="button_down" from="Home/LobbyBoard/JoinButton" to="Peer/Client" method="_on_join_button_button_down"]
+[connection signal="toggled" from="Lobby/ReadyButton" to="Peer/Client" method="_on_ready_button_toggled"]

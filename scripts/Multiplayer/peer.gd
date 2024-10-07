@@ -3,7 +3,7 @@ extends Node
 class_name Peer
 	
 enum SignalType {
-	id, join, connected, disconected, lobby, ping, update
+	id, join, connected, disconected, ping, lobby, update, player_ready
 }
 
 var socket = WebSocketMultiplayerPeer.new()
