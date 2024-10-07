@@ -30,10 +30,11 @@ var discard_pile: Array[String] = []  # Discarded card types
 @export var cards_per_player = 4
 var base_card = load("res://Scenes/card.tscn")
 var card_type_scripts = {
+	"catch_up": load("res://scripts/catch_up.gd"),
+	"feeling_lucky": load("res://scripts/feeling_lucky.gd"),
 	"hang_around": load("res://scripts/hang_around.gd"),
 	"reverse_flow": load("res://scripts/reverse_flow.gd"),
 	"robin_hood": load("res://scripts/robin_hood.gd"),
-	"catch_up": load("res://scripts/catch_up.gd"),
 	"time_investment": load("res://scripts/time_investment.gd"),
 	"time_loan": load("res://scripts/time_loan.gd")
 }
