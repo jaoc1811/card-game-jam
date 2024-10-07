@@ -38,4 +38,4 @@ func end_turn():
 func _on_button_pressed() -> void:
 	start_turn()
 	await get_tree().create_timer(2).timeout
-	end_turn()
+	#end_turn()

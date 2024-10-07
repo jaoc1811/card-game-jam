@@ -29,16 +29,16 @@ func _on_button_button_down() -> void:
 		offset = get_global_mouse_position() - position
 		var tween = get_tree().create_tween()
 		self.z_index = 1
+		tween.tween_property(shadow, "position", Vector2(0, 4), 0.1).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "rotation_degrees", 0, 0.1).set_ease(Tween.EASE_OUT)
-		tween.tween_property(shadow, "position", Vector2(shadow.position.x, shadow.position.y + 4), 0.1).set_ease(Tween.EASE_OUT)
 
 
 func _on_button_button_up() -> void:
 	if is_dragging:
 		is_dragging = false
 		var tween = get_tree().create_tween()
-		tween.tween_property(shadow, "position", Vector2(0, 0), 0.1).set_ease(Tween.EASE_OUT)
 		self.z_index = 0
+		tween.tween_property(shadow, "position", Vector2(0, 0), 0.1).set_ease(Tween.EASE_OUT)
 		if is_inside_playable_area:
 			tween.tween_property(self, "global_position", playable_area.position, 0.1).set_ease(Tween.EASE_OUT)
 		else:
