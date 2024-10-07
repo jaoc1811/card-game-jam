@@ -31,15 +31,14 @@ func start_turn():
 
 
 func end_turn(card_played_index: int):
-	cards.pop_at(card_played_index)
-	var card_played = get_child(card_played_index) # First card for testing
+	var card_played = cards.pop_at(card_played_index)
 	remove_child(card_played)
 	# Animation
 	for card_index in len(cards):
 		await set_card_position_and_rotation(cards[card_index], game_manager.end_turn_position.position, 0)
 
 	return card_played
-
+#
 #func _on_button_pressed() -> void:
 	#start_turn()
 	#await get_tree().create_timer(2).timeout

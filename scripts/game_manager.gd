@@ -3,6 +3,14 @@ extends Node
 # Players
 @export var players: Array[Node]
 var player_detail = []  # Array of dicts with ref to player and card played this round
+var current_player: int = 0  # NUMERO QUE REPRESENTA EL JUGADOR (ES EL INDICE CORRESPONDIENTE EN EL ARREGLO PLAYERS)
+var can_play: bool = false
+
+# Gameloop
+var new_turn: bool = true
+var show_play_button: bool = false
+@onready var play_button: Button = $Button
+var selected_card_index: int
 
 # Win conditions
 @export var target_points = 720
@@ -105,6 +113,7 @@ func start_turn(player: int):
 	# Runs each turn
 	var hand: Node2D = players[player].get_node("Hand")
 	await hand.start_turn()
+	await get_tree().create_timer(1).timeout
 	await deal_cards(player)
 
 
@@ -174,24 +183,54 @@ func end_round():
 	if reverse_flow != 1:  # To prevent UI update twice
 		reverse_flow = 1
 
+
+func next_player():
+	players[current_player].get_node("PlayableArea").hide()
+	players[current_player].get_node("PlayableArea").process_mode = Node.PROCESS_MODE_DISABLED
+	current_player = (current_player + 1) % len(players)
+	players[current_player].get_node("PlayableArea").show()
+	players[current_player].get_node("PlayableArea").process_mode = Node.PROCESS_MODE_INHERIT
+
+
 # TEST
 var run_once = true
+#func _process(delta: float) -> void:
+	#if run_once:
+		#run_once = false
+		#print("Initial deck: ", deck)
+		#var round = 0
+		#while win == false:
+			#for player_position in len(players):
+				#await start_turn(player_position)
+				#await get_tree().create_timer(1.5).timeout
+				#await end_turn(player_position, 0)
+				#await get_tree().create_timer(1.5).timeout
+				#print("Played cards this round: ", played_cards)
+			#await end_round()
+			#print("Discarded cards this round: ", discard_pile)
+			#print("Deck before end round: ", deck)
+			#print("END ROUND ", round)
+			#round += 1
+			#await get_tree().create_timer(2).timeout
+		#print()
+
+func _on_button_pressed() -> void:
+	await end_turn(current_player, selected_card_index)
+	new_turn = true
+	show_play_button = false
+	if current_player == len(players) - 1:
+		await end_round()
+	next_player()
+	
 func _process(delta: float) -> void:
-	if run_once:
-		run_once = false
-		print("Initial deck: ", deck)
-		var round = 0
-		while win == false:
-			for player_position in len(players):
-				await start_turn(player_position)
-				await get_tree().create_timer(1.5).timeout
-				await end_turn(player_position, 0)
-				await get_tree().create_timer(1.5).timeout
-				print("Played cards this round: ", played_cards)
-			await end_round()
-			print("Discarded cards this round: ", discard_pile)
-			print("Deck before end round: ", deck)
-			print("END ROUND ", round)
-			round += 1
-			await get_tree().create_timer(2).timeout
-		print()
+	if new_turn:
+		new_turn = false
+		await start_turn(current_player)
+	
+	if show_play_button:
+		play_button.show()
+		play_button.process_mode = Node.PROCESS_MODE_INHERIT
+	else:
+		play_button.hide()
+		play_button.process_mode = Node.PROCESS_MODE_DISABLED
+		

@@ -9,14 +9,6 @@ size = Vector2(20, 30)
 [node name="Card" type="Node2D"]
 script = ExtResource("1_5jjbx")
 
-[node name="Shadow" type="Polygon2D" parent="."]
-color = Color(0, 0, 0, 0.309804)
-polygon = PackedVector2Array(-9, -14, -10, -12.0181, -10, 11.8036, -9, 14, -7.77821, 15, 7.64823, 15, 9, 14, 10, 11.7151, 10, -12.0181, 9, -14, 7.93043, -15, -8, -15)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15625, 0.234375)
-texture = ExtResource("2_2vtp4")
-
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
@@ -31,6 +23,14 @@ offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Shadow" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.309804)
+polygon = PackedVector2Array(-9, -14, -10, -12.0181, -10, 11.8036, -9, 14, -7.77821, 15, 7.64823, 15, 9, 14, 10, 11.7151, 10, -12.0181, 9, -14, 7.93043, -15, -8, -15)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15625, 0.234375)
+texture = ExtResource("2_2vtp4")
 
 [node name="Area2D" type="Area2D" parent="."]
 

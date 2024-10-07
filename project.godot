@@ -23,10 +23,6 @@ buses/default_bus_layout="res://sounds/default_bus_layout.tres"
 
 window/size/resizable=false
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg")
-
 [global_group]
 
 deck=""
