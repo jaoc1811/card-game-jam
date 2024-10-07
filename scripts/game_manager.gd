@@ -15,6 +15,7 @@ var selected_card_index: int
 # Win conditions
 @export var target_points = 720
 var win = false
+@onready var win_screen: Label = $"Win screen"
 
 # Deck
 @export var deck_type = {}  # Dict with ref to card type and amount of cards per type
@@ -123,7 +124,7 @@ func end_turn(player: int, card_played_index: int):
 	player_detail[player]["card_played"] = card_played
 	# TODO: add to play history
 	played_cards.append(card_played.get_script().get_global_name())
-	# TODO: quitar carta de la mano, no eliminar del arbol
+	show_play_button = false
 
 
 func add_points(points):
@@ -142,12 +143,15 @@ func check_clocks():
 	var winners = []
 	for player_position in len(players):
 		if players[player_position].clock >= target_points:
-			winners.append(player_position)
+			winners.append("Player " + str(player_position + 1))
 	if len(winners) > 0:
-		print("Winners: ", winners)
-		# TODO: show winners
-		# TODO: end game
 		win = true
+		for player in len(players):
+			turn_off_playable_area(player)
+		win_screen.text = "Winners:\n" if len(winners) > 1 else "Winner:\n"
+		win_screen.text += ", ".join(winners)
+		win_screen.show()
+		# TODO: show back to menu button that reloads scene
 
 
 func end_round():
@@ -184,16 +188,24 @@ func end_round():
 		reverse_flow = 1
 
 
-func next_player():
+func turn_off_playable_area(player: int):
 	players[current_player].get_node("PlayableArea").hide()
 	players[current_player].get_node("PlayableArea").process_mode = Node.PROCESS_MODE_DISABLED
-	current_player = (current_player + 1) % len(players)
+
+
+func turn_on_playable_area(player: int):
 	players[current_player].get_node("PlayableArea").show()
 	players[current_player].get_node("PlayableArea").process_mode = Node.PROCESS_MODE_INHERIT
 
 
+func next_player():
+	turn_off_playable_area(current_player)
+	current_player = (current_player + 1) % len(players)
+	turn_on_playable_area(current_player)
+
+
 # TEST
-var run_once = true
+#var run_once = true
 #func _process(delta: float) -> void:
 	#if run_once:
 		#run_once = false
@@ -220,13 +232,15 @@ func _on_button_pressed() -> void:
 	show_play_button = false
 	if current_player == len(players) - 1:
 		await end_round()
-	next_player()
+	if not win:
+		next_player()
 	
 func _process(delta: float) -> void:
-	if new_turn:
-		new_turn = false
-		await start_turn(current_player)
-	
+	if not win:
+		if new_turn:
+			new_turn = false
+			await start_turn(current_player)
+
 	if show_play_button:
 		play_button.show()
 		play_button.process_mode = Node.PROCESS_MODE_INHERIT
