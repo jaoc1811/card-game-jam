@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwlhuox3mc4k"]
 
-[ext_resource type="Texture2D" uid="uid://ddgtdccpc0fv4" path="res://Clock Body.png" id="1_femva"]
+[ext_resource type="Texture2D" uid="uid://ddgtdccpc0fv4" path="res://sprites/Clock Body.png" id="1_femva"]
 [ext_resource type="Script" path="res://scripts/clock_hand.gd" id="2_njmok"]
-[ext_resource type="Texture2D" uid="uid://cewbw8cr37itm" path="res://Hand.svg" id="3_i3a6w"]
+[ext_resource type="Texture2D" uid="uid://cewbw8cr37itm" path="res://sprites/Hand.svg" id="3_i3a6w"]
 
 [node name="Clock" type="Node2D"]
 

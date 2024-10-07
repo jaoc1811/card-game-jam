@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cewbw8cr37itm"
-path="res://.godot/imported/Hand.svg-5ef8c069424287b43095cf4f098f2b1a.ctex"
+uid="uid://ddgtdccpc0fv4"
+path="res://.godot/imported/Clock Body.png-3cc7036c1cd107ba9f58ee442e87b382.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hand.svg"
-dest_files=["res://.godot/imported/Hand.svg-5ef8c069424287b43095cf4f098f2b1a.ctex"]
+source_file="res://sprites/Clock Body.png"
+dest_files=["res://.godot/imported/Clock Body.png-3cc7036c1cd107ba9f58ee442e87b382.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
