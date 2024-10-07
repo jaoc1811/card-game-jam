@@ -16,9 +16,11 @@ unique_name_in_owner = true
 script = ExtResource("1_ktli5")
 players = [NodePath("../Player"), NodePath("../Player2")]
 deck_type = {
-"hang_around": 4,
+"catch_up": 3,
+"hang_around": 2,
 "reverse_flow": 2,
-"robin_hood": 3
+"robin_hood": 3,
+"time_investment": 3
 }
 deck_node = NodePath("../Deck")
 

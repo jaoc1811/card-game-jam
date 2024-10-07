@@ -17,9 +17,11 @@ var base_card = load("res://Scenes/card.tscn")
 var card_type_scripts = {
 	"hang_around": load("res://scripts/hang_around.gd"),
 	"reverse_flow": load("res://scripts/reverse_flow.gd"),
-	"robin_hood": load("res://scripts/robin_hood.gd")
+	"robin_hood": load("res://scripts/robin_hood.gd"),
+	"catch_up": load("res://scripts/catch_up.gd"),
+	"time_investment": load("res://scripts/time_investment.gd"),
+	"time_loan": load("res://scripts/time_loan.gd")
 }
-
 
 # Either 1 or -1
 @export var reverse_flow : int = 1:
@@ -90,13 +92,28 @@ func end_turn(player: int, card_played: Node):
 	played_cards.append(card_played.get_script().get_global_name())
 	# TODO: quitar carta de la mano, no eliminar del arbol
 
+func add_points(points):
+	var passive_clock
+	var round_points
+	for player_position in points:
+		passive_clock = points[player_position].get("passive_clock", null)
+		round_points = points[player_position].get(
+			"round_points", null
+		)
+		if passive_clock:
+			players[player_position].passive_clock += passive_clock
+		if round_points:
+			players[player_position].round_points += round_points * reverse_flow
+
 func end_round():
 	# Play cards and add points in order
 	var card_played
+	var points
 	for player_position in len(player_detail):
 		# TODO: await animations for each card played
 		card_played = player_detail[player_position]["card_played"]
-		card_played.play(player_position)
+		points = card_played.play(player_position)
+		add_points(points)
 		# Send card to discard pile
 		discard_pile.append(card_played.get_script().get_global_name())
 
@@ -133,14 +150,13 @@ func end_round():
 		#for round in rounds:
 			#played_cards_nodes = []
 			#for player_position in len(players):
-				#print("Player ", player_position," playing... ")
 				#await start_turn(player_position)
 				#hand = players[player_position].get_node("Hand")
 				#hand.cards.pop_front()
-				#print("Player ", player_position," hand: ", hand.get_children())
+				#print("Player ", player_position," playing... Hand: ", hand.get_children())
 				#next_card = hand.get_child(0) # First card for testing
 				#hand.remove_child(next_card)
-				#print("Player ", player_position," playing: ", next_card.name)
+				##print("Player ", player_position," playing card: ", next_card.name)
 				#end_turn(player_position, next_card)
 				#played_cards_nodes.append(next_card)
 				##print("Player ", player_position," hand at the end of turn: ", hand.get_children())

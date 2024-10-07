@@ -6,3 +6,5 @@ func play(player_position: int):
 	game_manager.reverse_flow *= -1
 	for player in game_manager.players:
 		player.round_points *= game_manager.reverse_flow
+	
+	return {}
