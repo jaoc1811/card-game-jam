@@ -17,7 +17,7 @@ func play(player_position: int):
 	}
 	if lowest:
 		#game_manager.players[player_position].round_points += 180 * game_manager.reverse_flow
-		score[player_position] = {
+		score_dict[player_position] = {
 			"round_points": 180
 		}
-	return score
+	return score_dict
