@@ -9,6 +9,5 @@
 
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("1_2ayps")
-clock = 600
 
 [node name="Clock" parent="Player" instance=ExtResource("1_o8w7d")]
