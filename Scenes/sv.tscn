@@ -1,14 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpgdrdibyfl3e"]
+[gd_scene load_steps=6 format=3 uid="uid://dpgdrdibyfl3e"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_ktli5"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_7tky1"]
 [ext_resource type="Script" path="res://scripts/hand.gd" id="3_b33qs"]
-[ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://Scenes/clock.tscn" id="3_lj767"]
 [ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://Scenes/card.tscn" id="3_n72pe"]
 [ext_resource type="Script" path="res://scripts/hang_around.gd" id="4_xy5tj"]
+[ext_resource type="PackedScene" path="res://Scenes/clock.tscn" id="3_lj767"]
 [ext_resource type="AudioStream" uid="uid://dm4bwtlk67qsb" path="res://sounds/deal_card.wav" id="5_c4jvr"]
-[ext_resource type="Script" path="res://scripts/reverse_flow.gd" id="5_u6lx6"]
-[ext_resource type="Script" path="res://scripts/robin_hood.gd" id="6_e21ax"]
 
 [node name="SV" type="Node2D"]
 
@@ -58,18 +56,6 @@ position = Vector2(0, 40)
 script = ExtResource("3_b33qs")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
-
-[node name="Hang Around Card" parent="." instance=ExtResource("3_n72pe")]
-visible = false
-script = ExtResource("4_xy5tj")
-
-[node name="Reverse Flow Card" parent="." instance=ExtResource("3_n72pe")]
-visible = false
-script = ExtResource("5_u6lx6")
-
-[node name="Robin Hood Card" parent="." instance=ExtResource("3_n72pe")]
-visible = false
-script = ExtResource("6_e21ax")
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(554, 322)
