@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1kjak70pkeyf"]
+[gd_scene load_steps=5 format=3 uid="uid://d1kjak70pkeyf"]
 
 [ext_resource type="Script" path="res://scripts/hand.gd" id="1_2yb36"]
 [ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://Scenes/card.tscn" id="1_y21kq"]
+[ext_resource type="AudioStream" uid="uid://dm4bwtlk67qsb" path="res://sounds/deal_card.wav" id="3_5ry3x"]
 [ext_resource type="PackedScene" uid="uid://dqr0duh0wktdr" path="res://Scenes/deck.tscn" id="3_ji3t1"]
 
 [node name="JO" type="Node2D"]
@@ -20,6 +21,10 @@ cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -
 cards_rotations = Array[int]([-10, -5, 5, 10])
 start_turn_position = NodePath("../StartTurnPosition")
 end_turn_position = NodePath("../EndTurnPosition")
+
+[node name="DealCardSFX" type="AudioStreamPlayer2D" parent="Hand"]
+stream = ExtResource("3_5ry3x")
+volume_db = -31.689
 
 [node name="Card" parent="Hand" instance=ExtResource("1_y21kq")]
 

@@ -5,6 +5,7 @@ extends Node2D
 @export var cards_rotations: Array[int]
 @export var start_turn_position: Node2D
 @export var end_turn_position: Node2D
+@onready var deal_card_sfx: AudioStreamPlayer2D = $DealCardSFX
 
 
 func deal_card(card_index: int):
@@ -17,6 +18,7 @@ func deal_card(card_index: int):
 
 
 func set_card_position_and_rotation(card: Node2D, position: Vector2, rotation: int):
+	deal_card_sfx.play()
 	await get_tree().create_timer(0.1).timeout
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "position", position, 0.1).set_ease(Tween.EASE_OUT)
@@ -38,4 +40,4 @@ func end_turn():
 func _on_button_pressed() -> void:
 	start_turn()
 	await get_tree().create_timer(2).timeout
-	#end_turn()
+	end_turn()
