@@ -4,8 +4,6 @@ extends Node2D
 @export var cards: Array[Node2D] = []
 @export var cards_positions: Array[Vector2]
 @export var cards_rotations: Array[int]
-@export var start_turn_position: Node2D
-@export var end_turn_position: Node2D
 
 
 func deal_card(card_index: int):
@@ -27,7 +25,7 @@ func set_card_position_and_rotation(card: Node2D, position: Vector2, rotation: i
 
 func start_turn():
 	for card in cards:
-		card.position = start_turn_position.position
+		card.position = game_manager.start_turn_position.position
 	for card_index in len(cards):
 		await deal_card(card_index)
 
@@ -38,7 +36,7 @@ func end_turn(card_played_index: int):
 	remove_child(card_played)
 	# Animation
 	for card_index in len(cards):
-		await set_card_position_and_rotation(cards[card_index], end_turn_position.position, 0)
+		await set_card_position_and_rotation(cards[card_index], game_manager.end_turn_position.position, 0)
 
 	return card_played
 

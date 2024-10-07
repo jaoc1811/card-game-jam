@@ -3,6 +3,7 @@ extends Node
 # Player
 @export var players: Array[Node]
 var player_detail = [] # Array of dicts with ref to player and card played this round
+@export var target_points = 720
 
 # Deck
 @export var deck_type = {} # Dict with ref to card type and amount of cards per type
@@ -10,6 +11,8 @@ var player_detail = [] # Array of dicts with ref to player and card played this 
 var deck : Array[String] # Card types, initialized when drawn from deck
 var played_cards : Array[String] = [] # Played card types (for current round)
 var discard_pile : Array[String] = [] # Discarded card types
+@export var start_turn_position : Node2D
+@export var end_turn_position : Node2D
 
 # Cards
 @export var cards_per_player = 4
@@ -114,6 +117,15 @@ func add_points(points):
 		if round_points:
 			players[player_position].round_points += round_points * reverse_flow
 
+func check_clocks():
+	var winners = []
+	for player_position in len(players):
+		if players[player_position].clock >= target_points:
+			winners.append(player_position)
+	if len(winners) > 0:
+		print("Winners: ", winners)
+		# TODO: end game
+
 func end_round():
 	# Play cards and add points in order
 	var card_played
@@ -132,6 +144,9 @@ func end_round():
 	for player in players:
 		player.round_points += player.passive_clock * reverse_flow
 		player.clock += player.round_points
+
+	# Check if there are winners
+	check_clocks()
 
 	# Return to initial values
 	for player in player_detail:
