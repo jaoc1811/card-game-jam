@@ -1,9 +1,12 @@
 extends Node
 
-# Player
+# Players
 @export var players: Array[Node]
 var player_detail = []  # Array of dicts with ref to player and card played this round
+
+# Win conditions
 @export var target_points = 720
+var win = false
 
 # Deck
 @export var deck_type = {}  # Dict with ref to card type and amount of cards per type
@@ -99,11 +102,9 @@ func reshuffle_deck() -> void:
 
 
 func start_turn(player: int):
-	# Runs each turn except for the first round
+	# Runs each turn
 	var hand: Node2D = players[player].get_node("Hand")
 	await hand.start_turn()
-	# TODO: delete
-	#await get_tree().create_timer(1.5).timeout
 	await deal_cards(player)
 
 
@@ -135,7 +136,9 @@ func check_clocks():
 			winners.append(player_position)
 	if len(winners) > 0:
 		print("Winners: ", winners)
+		# TODO: show winners
 		# TODO: end game
+		win = true
 
 
 func end_round():
@@ -172,29 +175,23 @@ func end_round():
 		reverse_flow = 1
 
 # TEST
-#var run_once = true
-#func _process(delta: float) -> void:
-#if run_once:
-#run_once = false
-#var rounds = 2
-#print("Initial deck: ", deck)
-## Deal cards
-#await deal_cards(0)
-#await deal_cards(1)
-#print("Deck after first deal: ", deck)
-#await get_tree().create_timer(1).timeout
-#var hand
-#var next_card
-#for round in rounds:
-#for player_position in len(players):
-#await start_turn(player_position)
-#await get_tree().create_timer(1.5).timeout
-#await end_turn(player_position, 0)
-#await get_tree().create_timer(1.5).timeout
-#print("Played cards this round: ", played_cards)
-#await end_round()
-#print("Discarded cards this round: ", discard_pile)
-#print("Deck before end round: ", deck)
-#print("END ROUND ", round)
-#await get_tree().create_timer(2).timeout
-#print()
+var run_once = true
+func _process(delta: float) -> void:
+	if run_once:
+		run_once = false
+		print("Initial deck: ", deck)
+		var round = 0
+		while win == false:
+			for player_position in len(players):
+				await start_turn(player_position)
+				await get_tree().create_timer(1.5).timeout
+				await end_turn(player_position, 0)
+				await get_tree().create_timer(1.5).timeout
+				print("Played cards this round: ", played_cards)
+			await end_round()
+			print("Discarded cards this round: ", discard_pile)
+			print("Deck before end round: ", deck)
+			print("END ROUND ", round)
+			round += 1
+			await get_tree().create_timer(2).timeout
+		print()

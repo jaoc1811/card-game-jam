@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpgdrdibyfl3e"]
+[gd_scene load_steps=10 format=3 uid="uid://dpgdrdibyfl3e"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_ktli5"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_7tky1"]
@@ -6,12 +6,13 @@
 [ext_resource type="PackedScene" path="res://Scenes/clock.tscn" id="3_lj767"]
 [ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://Scenes/card.tscn" id="3_n72pe"]
 [ext_resource type="Script" path="res://scripts/hang_around.gd" id="4_xy5tj"]
+[ext_resource type="AudioStream" uid="uid://dm4bwtlk67qsb" path="res://sounds/deal_card.wav" id="5_c4jvr"]
 [ext_resource type="Script" path="res://scripts/reverse_flow.gd" id="5_u6lx6"]
 [ext_resource type="Script" path="res://scripts/robin_hood.gd" id="6_e21ax"]
 
 [node name="SV" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("players", "deck_node")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("players", "deck_node", "start_turn_position", "end_turn_position")]
 unique_name_in_owner = true
 script = ExtResource("1_ktli5")
 players = [NodePath("../Player"), NodePath("../Player2")]
@@ -23,6 +24,13 @@ deck_type = {
 "time_investment": 3
 }
 deck_node = NodePath("../Deck")
+start_turn_position = NodePath("../StartTurnPosition")
+end_turn_position = NodePath("../EndTurnPosition")
+
+[node name="DealCardSFX" type="AudioStreamPlayer2D" parent="GameManager"]
+position = Vector2(545, 209)
+stream = ExtResource("5_c4jvr")
+volume_db = -31.689
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2(545, 169)
@@ -31,13 +39,11 @@ script = ExtResource("2_7tky1")
 [node name="Clock" parent="Player" instance=ExtResource("3_lj767")]
 position = Vector2(-314, 0)
 
-[node name="Hand" type="Node2D" parent="Player" node_paths=PackedStringArray("start_turn_position", "end_turn_position")]
+[node name="Hand" type="Node2D" parent="Player"]
 position = Vector2(0, 40)
 script = ExtResource("3_b33qs")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
-start_turn_position = NodePath("../../StartTurnPosition")
-end_turn_position = NodePath("../../EndTurnPosition")
 
 [node name="Player2" type="Node2D" parent="."]
 position = Vector2(546, 489)
@@ -47,13 +53,11 @@ passive_clock = 15
 [node name="Clock" parent="Player2" instance=ExtResource("3_lj767")]
 position = Vector2(-305, 0)
 
-[node name="Hand" type="Node2D" parent="Player2" node_paths=PackedStringArray("start_turn_position", "end_turn_position")]
+[node name="Hand" type="Node2D" parent="Player2"]
 position = Vector2(0, 40)
 script = ExtResource("3_b33qs")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
-start_turn_position = NodePath("../../StartTurnPosition")
-end_turn_position = NodePath("../../EndTurnPosition")
 
 [node name="Hang Around Card" parent="." instance=ExtResource("3_n72pe")]
 visible = false
@@ -71,7 +75,7 @@ script = ExtResource("6_e21ax")
 position = Vector2(554, 322)
 
 [node name="StartTurnPosition" type="Node2D" parent="."]
-position = Vector2(1252, 325)
+position = Vector2(1093, 325)
 
 [node name="EndTurnPosition" type="Node2D" parent="."]
-position = Vector2(-123, 326)
+position = Vector2(63, 326)
