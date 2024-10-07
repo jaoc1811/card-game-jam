@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://ds26kfofiymge"]
 
-[ext_resource type="PackedScene" uid="uid://dqr0duh0wktdr" path="res://Scenes/deck.tscn" id="1_3dq6o"]
+[ext_resource type="PackedScene" uid="uid://dqr0duh0wktdr" path="res://scenes/deck.tscn" id="1_3dq6o"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a25bm"]
 [ext_resource type="Script" path="res://scripts/hand.gd" id="2_s7kpw"]
 [ext_resource type="AudioStream" uid="uid://dm4bwtlk67qsb" path="res://sounds/deal_card.wav" id="3_s3hhl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_oiryx"]
 [ext_resource type="Texture2D" uid="uid://di5i1atheyh6v" path="res://icon.svg" id="4_x3qqv"]
-[ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://Scenes/clock.tscn" id="5_0bued"]
+[ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://scenes/clock.tscn" id="5_0bued"]
 
 [node name="Game" type="Node2D"]
 
