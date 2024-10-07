@@ -60,14 +60,16 @@ func deal_cards(player_position: int) -> void:
 		next_card = base_card.instantiate()
 
 		hand.add_child(next_card)
+		hand.cards.append(next_card)
+
+		# TODO: esto hay que arreglarlo con la nueva manera de buscar las cartas
 		next_card.global_position = deck_node.position
 		next_card.name = next_card_type
 		# Set script and references lost when loading new script
 		next_card.set_script(card_type_scripts[next_card_type])
 		next_card.game_manager = self
 		next_card.shadow = next_card.get_node("Shadow")
-		
-		hand.cards.append(next_card)
+
 		await hand.deal_card(card_index)
 
 func reshuffle_deck() -> void:
@@ -80,7 +82,7 @@ func reshuffle_deck() -> void:
 
 func start_turn(player: int):
 	# Runs each turn except for the first round
-	deal_cards(player)
+	await deal_cards(player)
 
 func end_turn(player: int, card_played: Node):
 	player_detail[player]["card_played"] = card_played
@@ -124,7 +126,7 @@ func end_round():
 		#await deal_cards(0)
 		#await deal_cards(1)
 		#print("Deck after first deal: ", deck)
-		##await get_tree().create_timer(1).timeout
+		#await get_tree().create_timer(1).timeout
 		#var hand
 		#var next_card
 		#var played_cards_nodes
@@ -132,7 +134,7 @@ func end_round():
 			#played_cards_nodes = []
 			#for player_position in len(players):
 				#print("Player ", player_position," playing... ")
-				#start_turn(player_position)
+				#await start_turn(player_position)
 				#hand = players[player_position].get_node("Hand")
 				#hand.cards.pop_front()
 				#print("Player ", player_position," hand: ", hand.get_children())
@@ -142,7 +144,7 @@ func end_round():
 				#end_turn(player_position, next_card)
 				#played_cards_nodes.append(next_card)
 				##print("Player ", player_position," hand at the end of turn: ", hand.get_children())
-				##await get_tree().create_timer(1).timeout
+				#await get_tree().create_timer(1).timeout
 			#print("Played cards this round: ", played_cards)
 			#end_round()
 			#print("Discarded cards this round: ", discard_pile)
@@ -152,5 +154,5 @@ func end_round():
 			#for card in len(played_cards_nodes):
 				#if is_instance_valid(played_cards_nodes[card]):
 					#played_cards_nodes[card].queue_free()
-			##await get_tree().create_timer(2).timeout
+			#await get_tree().create_timer(2).timeout
 			#print()
