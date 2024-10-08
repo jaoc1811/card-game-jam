@@ -1,6 +1,7 @@
 extends Node
 
 # Players
+@export var num_of_players: int
 @export var players: Array[Node]
 var player_detail = []  # Array of dicts with ref to player and card played this round
 var current_player: int = 0  # NUMERO QUE REPRESENTA EL JUGADOR (ES EL INDICE CORRESPONDIENTE EN EL ARREGLO PLAYERS)
@@ -59,6 +60,9 @@ var playable_areas: Array[Node2D] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for i in len(players)-num_of_players:
+		var player = players.pop_back()
+		player.queue_free()
 	for i in len(players):
 		(
 			player_detail
