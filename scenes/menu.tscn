@@ -22,7 +22,7 @@ offset_right = 1152.0
 offset_bottom = 652.0
 texture = ExtResource("3_frqec")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 227.0
 offset_top = 74.0
@@ -48,14 +48,24 @@ offset_bottom = 370.0
 theme = SubResource("Theme_85250")
 text = "Sound"
 
+[node name="HowToPlay" type="Button" parent="."]
+layout_mode = 2
+offset_left = 423.0
+offset_top = 376.0
+offset_right = 706.0
+offset_bottom = 407.0
+theme = SubResource("Theme_85250")
+text = "How to play"
+
 [node name="Quit" type="Button" parent="."]
 layout_mode = 2
-offset_left = 428.0
-offset_top = 382.0
-offset_right = 698.0
-offset_bottom = 410.0
+offset_left = 437.0
+offset_top = 418.0
+offset_right = 707.0
+offset_bottom = 446.0
 text = "Quit"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Sound" to="." method="_on_sound_pressed"]
+[connection signal="pressed" from="HowToPlay" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
