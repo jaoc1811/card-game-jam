@@ -42,6 +42,15 @@ var card_type_scripts = {
 	"time_investment": load("res://scripts/time_investment.gd"),
 	"time_loan": load("res://scripts/time_loan.gd")
 }
+var card_type_sprites = {
+	"catch_up": load("res://sprites/cards/catch_up_card.png"),
+	"feeling_lucky": load("res://sprites/cards/feeling_lucky_card.png"),
+	"hang_around": load("res://sprites/cards/hang_around_card.png"),
+	"reverse_flow": load("res://sprites/cards/reverse_flow_card.png"),
+	"robin_hood": load("res://sprites/cards/robin_hood_card.png"),
+	"time_investment": load("res://sprites/cards/time_investment_card.png"),
+	"time_loan": load("res://sprites/cards/time_loan_card.png")
+}
 
 # Audio Manager
 @onready var deal_card_sfx: AudioStreamPlayer2D = $DealCardSFX
@@ -85,6 +94,7 @@ func deal_cards(player_position: int) -> void:
 	var next_card_type: String
 	var next_card: Node2D
 	var cards_in_hand = hand.get_child_count()
+	var card_front_sprite: Sprite2D
 	for card_index in range(cards_in_hand, cards_per_player):
 		if len(deck) == 0:
 			reshuffle_deck()
@@ -100,6 +110,11 @@ func deal_cards(player_position: int) -> void:
 		next_card.name = next_card_type
 		# Set script and references lost when loading new script
 		next_card.set_script(card_type_scripts[next_card_type])
+		next_card.get_node("Card back").hide()
+		card_front_sprite = next_card.get_node("Card front")
+		card_front_sprite.texture = card_type_sprites[next_card_type]
+		card_front_sprite.apply_scale(Vector2(0.26, 0.26)) # TODO: fix magic number
+		card_front_sprite.show()
 		next_card.game_manager = self
 		next_card.shadow = next_card.get_node("Shadow")
 
