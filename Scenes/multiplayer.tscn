@@ -27,17 +27,20 @@ script = ExtResource("3_3qu23")
 anchors_preset = 0
 
 [node name="StartServer" type="Button" parent="Home"]
+layout_mode = 0
 offset_right = 190.0
 offset_bottom = 87.0
 text = "Start Server"
 
 [node name="StartClient" type="Button" parent="Home"]
+layout_mode = 0
 offset_left = 961.0
 offset_right = 1152.0
 offset_bottom = 87.0
 text = "Start Client"
 
 [node name="SendTestToServer" type="Button" parent="Home"]
+layout_mode = 0
 offset_left = 961.0
 offset_top = 94.0
 offset_right = 1152.0
@@ -45,6 +48,7 @@ offset_bottom = 129.0
 text = "Test"
 
 [node name="SendTestToClient" type="Button" parent="Home"]
+layout_mode = 0
 offset_top = 98.0
 offset_right = 190.0
 offset_bottom = 129.0
@@ -55,12 +59,14 @@ text = "Test
 anchors_preset = 0
 
 [node name="Lobbies" type="ItemList" parent="Home/LobbyBoard"]
+layout_mode = 0
 offset_left = 86.0
 offset_top = 378.0
 offset_right = 1071.0
 offset_bottom = 614.0
 
 [node name="JoinButton" type="Button" parent="Home/LobbyBoard"]
+layout_mode = 0
 offset_left = 881.0
 offset_top = 318.0
 offset_right = 1071.0
@@ -69,6 +75,7 @@ text = "Join Lobby
 "
 
 [node name="LobbyKey" type="LineEdit" parent="Home/LobbyBoard"]
+layout_mode = 0
 offset_left = 86.0
 offset_top = 318.0
 offset_right = 836.0
@@ -79,18 +86,21 @@ visible = false
 anchors_preset = 0
 
 [node name="Players" type="ItemList" parent="Lobby"]
+layout_mode = 0
 offset_left = 312.0
 offset_top = 201.0
 offset_right = 795.0
 offset_bottom = 467.0
 
 [node name="ReadyButton" type="CheckButton" parent="Lobby"]
+layout_mode = 0
 offset_left = 751.0
 offset_top = 165.0
 offset_right = 795.0
 offset_bottom = 195.0
 
 [node name="ReadyText" type="RichTextLabel" parent="Lobby"]
+layout_mode = 0
 offset_left = 699.0
 offset_top = 168.0
 offset_right = 765.0
@@ -99,6 +109,7 @@ text = "Ready?
 "
 
 [node name="RoomText" type="RichTextLabel" parent="Lobby"]
+layout_mode = 0
 offset_left = 319.0
 offset_top = 145.0
 offset_right = 372.0
@@ -107,6 +118,7 @@ text = "Room:
 "
 
 [node name="PlayersText" type="RichTextLabel" parent="Lobby"]
+layout_mode = 0
 offset_left = 319.0
 offset_top = 172.0
 offset_right = 391.0
@@ -115,6 +127,7 @@ text = "Players:
 "
 
 [node name="StartGameButton" type="Button" parent="Lobby"]
+layout_mode = 0
 offset_left = 420.0
 offset_top = 478.0
 offset_right = 516.0
@@ -123,6 +136,7 @@ text = "Start Game
 "
 
 [node name="LeaveRoomButton" type="Button" parent="Lobby"]
+layout_mode = 0
 offset_left = 583.0
 offset_top = 478.0
 offset_right = 686.0
@@ -131,6 +145,7 @@ text = "Leave Room
 "
 
 [node name="RoomKey" type="RichTextLabel" parent="Lobby"]
+layout_mode = 0
 offset_left = 390.0
 offset_top = 145.0
 offset_right = 570.0

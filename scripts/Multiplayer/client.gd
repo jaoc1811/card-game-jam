@@ -35,7 +35,7 @@ func start(ip):
 
 func update_ui(data):
 	# Scene selection
-	if player.state == Player.State.waiting:
+	if player != null && player.state == Player.State.waiting:
 		get_node("/root/Multiplayer/Lobby").visible = true
 		get_node("/root/Multiplayer/Home").visible = false
 	

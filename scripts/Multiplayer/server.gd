@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 			if data.message == SignalType.player_ready:
 				handle_player_ready(data.id, data.lobby_key, data.value)
 			
-			update_client(data.id)
+			update_client()
 
 
 func start():
@@ -74,13 +74,13 @@ func lobby_response(client_id: int, lobby_key: String):
 		"player": lobbies[lobby_key].players[client_id].to_dict(),
 	})
 
-func update_client(id):
+func update_client():
 	var lobbies_dict = {}
 	for lobby in lobbies.keys():
 		lobbies_dict[lobby] = lobbies[lobby].to_dict()
 	
-	send_package(id, {
-		"id": id,
+	send_package(null, {
+		"id": SignalType.id,
 		"message": SignalType.update,
 		"lobbies": lobbies_dict,
 	})
