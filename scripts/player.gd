@@ -1,11 +1,13 @@
 extends Node2D
 
 @onready var clock_node = $Clock
+@onready var passive_clock_label: Label = $"Passive Clock"
+@onready var round_points_label: Label = $"Round Points"
+
 @export var passive_clock : int = 30: # Minutes
 	set(new_value):
 		passive_clock = new_value
-		# TODO: update passive clock in UI
-		print(self.name, " passive_clock ", passive_clock)
+		passive_clock_label.text = get_points_str(passive_clock)
 
 # 1 point = 1 minute in clock
 @export var clock : int = 0:
@@ -18,5 +20,22 @@ extends Node2D
 @export var round_points : int = 0:
 	set(new_value):
 		round_points = new_value
-		# TODO: update points in UI, hide if round_points = 0
-		print(self.name, " round_points ", round_points)
+		round_points_label.text = get_points_str(round_points)
+
+
+func get_clock_hours(points: int) -> int:
+	return points/60
+
+
+func get_clock_minutes(points: int)  -> int:
+	return points%60
+
+
+func get_points_str(points: int):
+	var points_str = str(get_clock_hours(points)) + "h"
+	var minutes = get_clock_minutes(points)
+	if minutes > 0:
+		points_str += " " + str(minutes) + "min"
+	if points >= 0:
+		points_str = "+" + points_str
+	return points_str
