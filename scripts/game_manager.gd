@@ -9,7 +9,9 @@ var can_play: bool = false
 # Gameloop
 var new_turn: bool = true
 var show_play_button: bool = false
-@onready var play_button: Button = $Button
+@onready var play_button: Button = $"Play Button"
+var show_next_player_button: bool = false
+@onready var next_player_button: Button = $"Next Player Button"
 var selected_card_index: int
 
 # Win conditions
@@ -229,12 +231,27 @@ func next_player():
 
 func _on_button_pressed() -> void:
 	await end_turn(current_player, selected_card_index)
-	new_turn = true
+	#new_turn = true
 	show_play_button = false
+	show_next_player_button = true
+	if current_player == len(players) - 1:
+		next_player_button.text = "End Round"
+		#await end_round()
+	else:
+		next_player_button.text = "Next Player"
+	#if not win:
+		#next_player()
+
+
+func _on_next_player_button_pressed() -> void:
+	#await end_turn(current_player, selected_card_index)
+	new_turn = true
+	show_next_player_button = false
 	if current_player == len(players) - 1:
 		await end_round()
 	if not win:
 		next_player()
+
 	
 func _process(delta: float) -> void:
 	if not win:
@@ -248,4 +265,11 @@ func _process(delta: float) -> void:
 	else:
 		play_button.hide()
 		play_button.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	if show_next_player_button:
+		next_player_button.show()
+		next_player_button.process_mode = Node.PROCESS_MODE_INHERIT
+	else:
+		next_player_button.hide()
+		next_player_button.process_mode = Node.PROCESS_MODE_DISABLED
 		

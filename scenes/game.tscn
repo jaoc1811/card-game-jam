@@ -29,7 +29,7 @@ end_turn_position = NodePath("../EndTurnPosition")
 stream = ExtResource("3_s3hhl")
 volume_db = -31.689
 
-[node name="Button" type="Button" parent="GameManager"]
+[node name="Play Button" type="Button" parent="GameManager"]
 process_mode = 4
 visible = false
 offset_left = 49.0
@@ -37,6 +37,15 @@ offset_top = 29.0
 offset_right = 100.0
 offset_bottom = 60.0
 text = "Play"
+
+[node name="Next Player Button" type="Button" parent="GameManager"]
+process_mode = 4
+visible = false
+offset_left = 10.0
+offset_top = 29.0
+offset_right = 108.0
+offset_bottom = 60.0
+text = "Next Player"
 
 [node name="Win screen" type="Label" parent="GameManager"]
 visible = false
@@ -139,4 +148,5 @@ script = ExtResource("2_s7kpw")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
 
-[connection signal="pressed" from="GameManager/Button" to="GameManager" method="_on_button_pressed"]
+[connection signal="pressed" from="GameManager/Play Button" to="GameManager" method="_on_button_pressed"]
+[connection signal="pressed" from="GameManager/Next Player Button" to="GameManager" method="_on_next_player_button_pressed"]
