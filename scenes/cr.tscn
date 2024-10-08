@@ -1,9 +1,264 @@
-[gd_scene load_steps=3 format=3 uid="uid://pyo32ix4ns1e"]
+[gd_scene load_steps=26 format=3 uid="uid://pyo32ix4ns1e"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2ayps"]
+[ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://scenes/card.tscn" id="1_d5iw2"]
 [ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://scenes/clock.tscn" id="1_o8w7d"]
+[ext_resource type="Script" path="res://scripts/feeling_lucky.gd" id="2_rfok8"]
+[ext_resource type="Texture2D" uid="uid://b8jm81buohftg" path="res://sprites/silver coin/Silver_16.png" id="3_dd1n7"]
+[ext_resource type="Texture2D" uid="uid://bsh0kq5vldyok" path="res://sprites/silver coin/Silver_17.png" id="4_vecmx"]
+[ext_resource type="Texture2D" uid="uid://b227hn8ihemes" path="res://sprites/silver coin/Silver_18.png" id="5_57sxh"]
+[ext_resource type="Texture2D" uid="uid://bh6rk8mmjxxe4" path="res://sprites/silver coin/Silver_19.png" id="6_vmk7d"]
+[ext_resource type="Texture2D" uid="uid://d2a5yaif5cf78" path="res://sprites/silver coin/Silver_20.png" id="7_tfiid"]
+[ext_resource type="Texture2D" uid="uid://duti63dobueas" path="res://sprites/silver coin/Silver_11.png" id="8_3at00"]
+[ext_resource type="Texture2D" uid="uid://cledr1nwjdqp2" path="res://sprites/silver coin/Silver_12.png" id="9_7ji2u"]
+[ext_resource type="Texture2D" uid="uid://cy8jb76tlbbyl" path="res://sprites/silver coin/Silver_13.png" id="10_i0bk2"]
+[ext_resource type="Texture2D" uid="uid://drq65j1ofmnsg" path="res://sprites/silver coin/Silver_14.png" id="11_j8h4a"]
+[ext_resource type="Texture2D" uid="uid://bf00hkrvfb07a" path="res://sprites/silver coin/Silver_15.png" id="12_8siq1"]
+[ext_resource type="Texture2D" uid="uid://buih2kti32xr2" path="res://sprites/silver coin/Silver_25.png" id="13_027b6"]
+[ext_resource type="Texture2D" uid="uid://c0shjrox7f3ox" path="res://sprites/silver coin/Silver_24.png" id="14_7b6mp"]
+[ext_resource type="Texture2D" uid="uid://chyvcm2mhq64n" path="res://sprites/silver coin/Silver_23.png" id="15_eios7"]
+[ext_resource type="Texture2D" uid="uid://bepvwvpscuakh" path="res://sprites/silver coin/Silver_22.png" id="16_1i5ix"]
+[ext_resource type="Texture2D" uid="uid://btcqxp2e24udi" path="res://sprites/silver coin/Silver_21.png" id="17_vwccp"]
+[ext_resource type="Texture2D" uid="uid://da5jvlhrwa3ec" path="res://sprites/silver coin/Silver_30.png" id="18_xet1l"]
+[ext_resource type="Texture2D" uid="uid://db2di82hflp7t" path="res://sprites/silver coin/Silver_29.png" id="19_2vn4l"]
+[ext_resource type="Texture2D" uid="uid://d33g8mmjunnti" path="res://sprites/silver coin/Silver_28.png" id="20_olvtc"]
+[ext_resource type="Texture2D" uid="uid://b24f4ski3eknv" path="res://sprites/silver coin/Silver_27.png" id="21_yv5oi"]
+[ext_resource type="Texture2D" uid="uid://upsv3bwsr6gt" path="res://sprites/silver coin/Silver_26.png" id="22_d1ptg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x446s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_tfiid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3at00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7ji2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i0bk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j8h4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8siq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_027b6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_7b6mp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_eios7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1i5ix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vwccp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xet1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2vn4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_olvtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_yv5oi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_d1ptg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dd1n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vecmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_57sxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vmk7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tfiid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3at00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7ji2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i0bk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j8h4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8siq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_027b6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_7b6mp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_eios7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1i5ix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vwccp")
+}],
+"loop": false,
+"name": &"CoinFlipLose",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_tfiid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3at00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7ji2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i0bk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j8h4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8siq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_027b6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_7b6mp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_eios7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1i5ix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vwccp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xet1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2vn4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_olvtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_yv5oi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_d1ptg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dd1n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vecmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_57sxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vmk7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tfiid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3at00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7ji2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i0bk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j8h4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8siq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_027b6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_7b6mp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_eios7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1i5ix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vwccp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xet1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2vn4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_olvtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_yv5oi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_d1ptg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dd1n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vecmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_57sxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vmk7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tfiid")
+}],
+"loop": false,
+"name": &"CoinFlipWin",
+"speed": 15.0
+}]
 
 [node name="CR" type="Node2D"]
+
+[node name="Card" parent="." instance=ExtResource("1_d5iw2")]
+position = Vector2(-1070.96, -1713.88)
+script = ExtResource("2_rfok8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -11,3 +266,22 @@
 script = ExtResource("1_2ayps")
 
 [node name="Clock" parent="Player" instance=ExtResource("1_o8w7d")]
+
+[node name="CoinFlip" type="Node2D" parent="."]
+rotation = 1.5708
+
+[node name="Lose" type="AnimatedSprite2D" parent="CoinFlip"]
+visible = false
+position = Vector2(0, -290)
+sprite_frames = SubResource("SpriteFrames_x446s")
+animation = &"CoinFlipLose"
+frame = 30
+frame_progress = 1.0
+
+[node name="Win" type="AnimatedSprite2D" parent="CoinFlip"]
+visible = false
+position = Vector2(0, 290)
+sprite_frames = SubResource("SpriteFrames_x446s")
+animation = &"CoinFlipWin"
+frame = 40
+frame_progress = 1.0
