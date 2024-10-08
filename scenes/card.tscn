@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4fxyppywr8fx"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_5jjbx"]
-[ext_resource type="Texture2D" uid="uid://di5i1atheyh6v" path="res://icon.svg" id="2_2vtp4"]
+[ext_resource type="Texture2D" uid="uid://bq86ja46lpgjs" path="res://sprites/cards/back.png" id="2_5vtko"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yods"]
 size = Vector2(20, 30)
@@ -28,9 +28,10 @@ metadata/_edit_use_anchors_ = true
 color = Color(0, 0, 0, 0.309804)
 polygon = PackedVector2Array(-9, -14, -10, -12.0181, -10, 11.8036, -9, 14, -7.77821, 15, 7.64823, 15, 9, 14, 10, 11.7151, 10, -12.0181, 9, -14, 7.93043, -15, -8, -15)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15625, 0.234375)
-texture = ExtResource("2_2vtp4")
+[node name="Card back" type="Sprite2D" parent="."]
+position = Vector2(-2.85251e-07, -2.38419e-07)
+scale = Vector2(0.142857, 0.153061)
+texture = ExtResource("2_5vtko")
 
 [node name="Area2D" type="Area2D" parent="."]
 
