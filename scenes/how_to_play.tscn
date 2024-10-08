@@ -38,21 +38,19 @@ offset_right = 1114.0
 offset_bottom = 583.0
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "[color=black]The first player to reach 12:00 am on his/her clock wins!
-Set up: Each player is dealt 4 cards and a clock that starts at 12:00 pm.
+text = "[color=black]Goal: Whoever reaches 12:00 am on his/her clock wins!
+All players will be dealt dealt 4 cards and a clock that starts at 12:00 pm.
+At the start of every turn but the first one all players will draw a card from a shared pile.
 Let’s play: 
 All players make their plays at the same time in parallel. The play order is chosen randomly at the start of the game.
 	Turn structure:
-Draw phase: draw a card from the top of the deck.
+Draw phase: draw a card from the top of the deck. In the first turn there won't be a draw.
 Main phase: 
 Select a card to play this turn (you can only play one card by turn and you must play one).
-Confirm your selected play for the turn.
+Confirm your selected card for the turn.
 Show Phase: The effects of the cards resolve in player order until completion.
 Tick phase: all players have a number of hours/minutes that add passively at the end of the round to the clock. These are called the passive ticks.
-End phase: If any player’s clock reaches 12:00 am, that player wins the game.
-	Edge cases:
-		What happens if more than one player has a clock at 12:00 am at the end phase?
-	Both of them win and celebrate.
+End phase: if one or more players reach 12:00 am by the end of the turn, all of them win!
 [/color]"
 
 [node name="Back" type="Button" parent="."]
