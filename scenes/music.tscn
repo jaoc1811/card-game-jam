@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpgnydmtfg8ob"]
+
+[ext_resource type="AudioStream" uid="uid://daxh2ubgrlr2g" path="res://music/Game Jam Oct v1.mp3" id="1_5woh0"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_5woh0")
+volume_db = -22.609
+autoplay = true
+bus = &"Music"

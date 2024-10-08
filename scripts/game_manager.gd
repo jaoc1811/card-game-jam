@@ -51,6 +51,7 @@ var card_type_sprites = {
 	"time_investment": load("res://sprites/cards/time_investment_card.png"),
 	"time_loan": load("res://sprites/cards/time_loan_card.png")
 }
+var playable_areas: Array[Node2D] = []
 
 # Audio Manager
 @onready var deal_card_sfx: AudioStreamPlayer2D = $DealCardSFX
@@ -76,6 +77,7 @@ func _ready() -> void:
 				}
 			)
 		)
+		playable_areas.append(players[i].get_node("PlayableArea"))
 
 	# Create & shuffle deck
 	create_deck()
@@ -115,6 +117,7 @@ func deal_cards(player_position: int) -> void:
 		card_front_sprite.texture = card_type_sprites[next_card_type]
 		card_front_sprite.apply_scale(Vector2(0.26, 0.26)) # TODO: fix magic number
 		card_front_sprite.show()
+		next_card.playable_area = playable_areas[player_position]
 		next_card.game_manager = self
 		next_card.shadow = next_card.get_node("Shadow")
 

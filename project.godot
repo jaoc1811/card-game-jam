@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Card Game Jam"
-run/main_scene="res://scenes/jo.tscn"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
 
 buses/default_bus_layout="res://sounds/default_bus_layout.tres"
+
+[autoload]
+
+Music="*res://scenes/music.tscn"
 
 [display]
 
