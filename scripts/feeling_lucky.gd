@@ -1,6 +1,7 @@
 class_name feeling_lucky
 extends Card
 
+# TODO: Move to gamemanager
 @onready var win: AnimatedSprite2D = $"../CoinFlip/Win"
 @onready var lose: AnimatedSprite2D = $"../CoinFlip/Lose"
 
@@ -12,6 +13,7 @@ func play(player_position: int):
 	var points = hour_value * gambling_hours_amount
 	var punishment_multiplier = -1
 
+	# TODO: Move to gamemanager
 	if coin_value == heads:
 		win.show()
 		win.play()
