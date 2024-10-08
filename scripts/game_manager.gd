@@ -55,6 +55,7 @@ var card_type_sprites = {
 	"time_loan": load("res://sprites/cards/time_loan_card.png")
 }
 var playable_areas: Array[Node2D] = []
+@onready var played_card_nodes: Node = $"Played Card Nodes"
 
 # Audio Manager
 @onready var deal_card_sfx: AudioStreamPlayer2D = $DealCardSFX
@@ -193,20 +194,29 @@ func end_round():
 	# Play cards and add points in order
 	var card_played
 	var points
+	for player in players:
+		player.round_points_label.text = "+0h"
+		player.round_points_label.show()
+
 	for player_position in len(player_detail):
-		# TODO: await animations for each card played
 		card_played = player_detail[player_position]["card_played"]
+		card_played.get_node("Card back").hide()
+		card_played.get_node("Card front").show()
 		points = card_played.play(player_position)
 		add_points(points)
+		await get_tree().create_timer(1.5).timeout
 		# Send card to discard pile
 		discard_pile.append(card_played.get_script().get_global_name())
 
 	played_cards = []
 
-	# Add passive_clock and update clock points
+	# Add passive points
 	for player in players:
 		player.round_points += player.passive_clock * reverse_flow
-		player.round_points_label.show()
+	await get_tree().create_timer(1.5).timeout
+
+	# Update clock points
+	for player in players:
 		player.clock += player.round_points
 
 	# Check if there are winners
@@ -241,6 +251,7 @@ func turn_on_playable_area(player: int):
 
 
 func next_player():
+	new_turn = true
 	turn_off_playable_area(current_player)
 	current_player = (current_player + 1) % len(players)
 	turn_on_playable_area(current_player)
@@ -263,19 +274,22 @@ func _on_button_pressed() -> void:
 
 func _on_next_player_button_pressed() -> void:
 	button_sfx.play()
+	print("next player btn")
 	#await end_turn(current_player, selected_card_index)
-	new_turn = true
 	show_next_player_button = false
 	if current_player == len(players) - 1:
+		turn_off_playable_area(current_player)
 		await end_round()
-	if not win:
-		next_player()
+	else:
+		if not win:
+			next_player()
 
 
 func _on_next_round_button_pressed() -> void:
 	button_sfx.play()
 	new_turn = true
 	show_next_round_button = false
+	next_player()
 	start_round()
 
 func move_info_card_up() -> void:

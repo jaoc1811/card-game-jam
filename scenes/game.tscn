@@ -89,6 +89,8 @@ position = Vector2(-5.96046e-08, 0.0600018)
 scale = Vector2(0.0416667, 0.0448214)
 texture = ExtResource("5_68dyi")
 
+[node name="Played Card Nodes" type="Node" parent="GameManager"]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
 
