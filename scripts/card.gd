@@ -12,6 +12,7 @@ var offset: Vector2
 var slot_position: Vector2
 var slot_rotation: int
 var playable_area
+var type: String
 
 
 func _process(delta):
@@ -57,10 +58,12 @@ func _on_button_button_up() -> void:
 
 func _on_button_mouse_entered() -> void:
 	if is_draggable:
+		game_manager.hovering_card_index = get_parent().cards.find(self)
 		is_hovering = true
 
 
 func _on_button_mouse_exited() -> void:
+	game_manager.hovering_card_index = -1
 	is_hovering = false
 
 

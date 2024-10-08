@@ -14,8 +14,10 @@ var show_play_button: bool = false
 var show_next_player_button: bool = false
 @onready var next_player_button: Button = $"Next Player Button"
 var selected_card_index: int
+var hovering_card_index: int = -1
 var show_next_round_button: bool = false
 @onready var next_round_button: Button = $"Next Round Button"
+@onready var info_card: Node2D = $InfoCard
 
 # Win conditions
 @export var target_points = 720
@@ -118,10 +120,10 @@ func deal_cards(player_position: int) -> void:
 		next_card.name = next_card_type
 		# Set script and references lost when loading new script
 		next_card.set_script(card_type_scripts[next_card_type])
+		next_card.type = next_card_type
 		next_card.get_node("Card back").hide()
 		card_front_sprite = next_card.get_node("Card front")
 		card_front_sprite.texture = card_type_sprites[next_card_type]
-		card_front_sprite.apply_scale(Vector2(0.26, 0.26)) # TODO: fix magic number
 		card_front_sprite.show()
 		next_card.playable_area = playable_areas[player_position]
 		next_card.game_manager = self
@@ -276,6 +278,16 @@ func _on_next_round_button_pressed() -> void:
 	show_next_round_button = false
 	start_round()
 
+func move_info_card_up() -> void:
+	var info_card_sprite = info_card.get_node("Sprite")
+	var hovering_card_type = players[current_player].get_node("Hand").cards[hovering_card_index].type
+	info_card_sprite.texture = card_type_sprites[hovering_card_type]
+	var tween = get_tree().create_tween()
+	tween.tween_property(info_card, "position", Vector2(info_card.position.x, 20), 0.1).set_ease(Tween.EASE_OUT)
+
+func move_info_card_down() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(info_card, "position", Vector2(info_card.position.x, 110), 0.1).set_ease(Tween.EASE_OUT)
 
 func _process(delta: float) -> void:
 	if not win:
@@ -304,6 +316,17 @@ func _process(delta: float) -> void:
 		next_round_button.hide()
 		next_round_button.process_mode = Node.PROCESS_MODE_DISABLED
 		
+	if current_player == 0 or current_player == 1:
+		info_card.position = Vector2(60, info_card.position.y)
+	elif  current_player == 2 or current_player == 3:
+		info_card.position = Vector2(-60, info_card.position.y)
+	
+	if hovering_card_index != -1:
+		move_info_card_up()
+	else:
+		move_info_card_down()
+			
+	
 
 # TEST
 #var run_once = true

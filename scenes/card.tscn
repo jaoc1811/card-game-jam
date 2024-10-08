@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b4fxyppywr8fx"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_5jjbx"]
+[ext_resource type="Texture2D" uid="uid://idpwchlq8a0s" path="res://sprites/cards/catch_up_card.png" id="2_3mgmw"]
 [ext_resource type="Texture2D" uid="uid://bq86ja46lpgjs" path="res://sprites/cards/back.png" id="2_5vtko"]
-[ext_resource type="Texture2D" uid="uid://bmpojmlovnoao" path="res://sprites/cards/template.png" id="2_n0lua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yods"]
 size = Vector2(20, 30)
@@ -31,13 +31,13 @@ polygon = PackedVector2Array(-9, -14, -10, -12.0181, -10, 11.8036, -9, 14, -7.77
 
 [node name="Card front" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-9.53674e-07, -9.53674e-07)
-scale = Vector2(0.142857, 0.153061)
-texture = ExtResource("2_n0lua")
+position = Vector2(-5.96046e-08, 0.0600018)
+scale = Vector2(0.0416667, 0.0448214)
+texture = ExtResource("2_3mgmw")
 
 [node name="Card back" type="Sprite2D" parent="."]
 position = Vector2(-2.85251e-07, -2.38419e-07)
-scale = Vector2(0.142857, 0.153061)
+scale = Vector2(0.143, 0.153)
 texture = ExtResource("2_5vtko")
 
 [node name="Area2D" type="Area2D" parent="."]
