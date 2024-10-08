@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://06p60rldx2f6"]
+
+[ext_resource type="Theme" uid="uid://q6cmt5cpvq2" path="res://themes/buton.tres" id="1_d4c53"]
+[ext_resource type="Script" path="res://scripts/how_to_play.gd" id="2_m0ecb"]
+[ext_resource type="Texture2D" uid="uid://uag8t02m0swj" path="res://sprites/silver coin/Silver_1.png" id="3_qqyox"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d4c53")
+script = ExtResource("2_m0ecb")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 652.0
+texture = ExtResource("3_qqyox")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 5.0
+offset_right = 1018.0
+offset_bottom = 112.0
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[color=black]NOT GENERIC GAME 11[/color]"
+
+[node name="HowToPlayDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 89.0
+offset_right = 1114.0
+offset_bottom = 583.0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[color=black]The first player to reach 12:00 am on his/her clock wins!
+Set up: Each player is dealt 4 cards and a clock that starts at 12:00 pm.
+Let’s play: 
+All players make their plays at the same time in parallel. The play order is chosen randomly at the start of the game.
+	Turn structure:
+Draw phase: draw a card from the top of the deck.
+Main phase: 
+Select a card to play this turn (you can only play one card by turn and you must play one).
+Confirm your selected play for the turn.
+Show Phase: The effects of the cards resolve in player order until completion.
+Tick phase: all players have a number of hours/minutes that add passively at the end of the round to the clock. These are called the passive ticks.
+End phase: If any player’s clock reaches 12:00 am, that player wins the game.
+	Edge cases:
+		What happens if more than one player has a clock at 12:00 am at the end phase?
+	Both of them win and celebrate.
+[/color]"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 2
+offset_left = 429.0
+offset_top = 582.0
+offset_right = 699.0
+offset_bottom = 610.0
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

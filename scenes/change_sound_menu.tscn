@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://clcuoy3jak1d0"]
+
+[ext_resource type="Theme" uid="uid://q6cmt5cpvq2" path="res://themes/buton.tres" id="1_e0bkv"]
+[ext_resource type="Script" path="res://scripts/change_sound_menu.gd" id="2_ht3nk"]
+[ext_resource type="PackedScene" uid="uid://ijlo3p5ighbt" path="res://scenes/change_sound.tscn" id="3_bnf2o"]
+
+[node name="change_sound_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_e0bkv")
+script = ExtResource("2_ht3nk")
+
+[node name="Music Label" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 236.0
+offset_right = 642.0
+offset_bottom = 276.0
+text = "MUSIC"
+
+[node name="Music" parent="." instance=ExtResource("3_bnf2o")]
+layout_mode = 1
+offset_left = 334.0
+offset_top = 264.0
+offset_right = -388.0
+offset_bottom = -322.0
+bus_name = "Music"
+
+[node name="SFX Label" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 344.0
+offset_right = 660.0
+offset_bottom = 384.0
+text = "SFX"
+
+[node name="SFX" parent="." instance=ExtResource("3_bnf2o")]
+layout_mode = 1
+offset_left = 329.0
+offset_top = 326.0
+offset_right = -385.0
+offset_bottom = -151.0
+bus_name = "SFX"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 428.0
+offset_top = 510.0
+offset_right = 683.0
+offset_bottom = 548.0
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
