@@ -42,6 +42,7 @@ var card_type_scripts = {
 	"time_investment": load("res://scripts/time_investment.gd"),
 	"time_loan": load("res://scripts/time_loan.gd")
 }
+var playable_areas: Array[Node2D] = []
 
 # Audio Manager
 @onready var deal_card_sfx: AudioStreamPlayer2D = $DealCardSFX
@@ -67,6 +68,7 @@ func _ready() -> void:
 				}
 			)
 		)
+		playable_areas.append(players[i].get_node("PlayableArea"))
 
 	# Create & shuffle deck
 	create_deck()
@@ -100,6 +102,7 @@ func deal_cards(player_position: int) -> void:
 		next_card.name = next_card_type
 		# Set script and references lost when loading new script
 		next_card.set_script(card_type_scripts[next_card_type])
+		next_card.playable_area = playable_areas[player_position]
 		next_card.game_manager = self
 		next_card.shadow = next_card.get_node("Shadow")
 
