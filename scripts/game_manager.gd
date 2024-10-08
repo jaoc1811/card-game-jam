@@ -1,6 +1,7 @@
 extends Node
 
 # Players
+@export var num_of_players: int
 @export var players: Array[Node]
 var player_detail = []  # Array of dicts with ref to player and card played this round
 var current_player: int = 0  # NUMERO QUE REPRESENTA EL JUGADOR (ES EL INDICE CORRESPONDIENTE EN EL ARREGLO PLAYERS)
@@ -55,6 +56,8 @@ var playable_areas: Array[Node2D] = []
 
 # Audio Manager
 @onready var deal_card_sfx: AudioStreamPlayer2D = $DealCardSFX
+@onready var take_card_sfx: AudioStreamPlayer2D = $TakeCardSFX
+@onready var button_sfx: AudioStreamPlayer2D = $ButtonSFX
 
 # Either 1 or -1
 @export var reverse_flow: int = 1:
@@ -66,6 +69,9 @@ var playable_areas: Array[Node2D] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for i in len(players)-num_of_players:
+		var player = players.pop_back()
+		player.queue_free()
 	for i in len(players):
 		(
 			player_detail
@@ -239,6 +245,7 @@ func next_player():
 
 
 func _on_button_pressed() -> void:
+	button_sfx.play()
 	await end_turn(current_player, selected_card_index)
 	#new_turn = true
 	show_play_button = false
@@ -253,6 +260,7 @@ func _on_button_pressed() -> void:
 
 
 func _on_next_player_button_pressed() -> void:
+	button_sfx.play()
 	#await end_turn(current_player, selected_card_index)
 	new_turn = true
 	show_next_player_button = false
@@ -263,6 +271,7 @@ func _on_next_player_button_pressed() -> void:
 
 
 func _on_next_round_button_pressed() -> void:
+	button_sfx.play()
 	new_turn = true
 	show_next_round_button = false
 	start_round()
