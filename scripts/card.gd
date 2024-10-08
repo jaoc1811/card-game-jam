@@ -25,6 +25,7 @@ func _process(delta):
 
 func _on_button_button_down() -> void:
 	if is_draggable:
+		game_manager.take_card_sfx.play()
 		is_dragging = true
 		game_manager.show_play_button = false
 		offset = get_global_mouse_position() - position
@@ -36,6 +37,7 @@ func _on_button_button_down() -> void:
 
 func _on_button_button_up() -> void:
 	if is_dragging:
+		game_manager.take_card_sfx.play()
 		is_dragging = false
 		var tween = get_tree().create_tween()
 		self.z_index = 0

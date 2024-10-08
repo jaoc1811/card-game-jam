@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4fxyppywr8fx"]
+[gd_scene load_steps=5 format=3 uid="uid://b4fxyppywr8fx"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_5jjbx"]
 [ext_resource type="Texture2D" uid="uid://bq86ja46lpgjs" path="res://sprites/cards/back.png" id="2_5vtko"]
+[ext_resource type="Texture2D" uid="uid://bmpojmlovnoao" path="res://sprites/cards/template.png" id="2_n0lua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yods"]
 size = Vector2(20, 30)
@@ -27,6 +28,12 @@ metadata/_edit_use_anchors_ = true
 [node name="Shadow" type="Polygon2D" parent="."]
 color = Color(0, 0, 0, 0.309804)
 polygon = PackedVector2Array(-9, -14, -10, -12.0181, -10, 11.8036, -9, 14, -7.77821, 15, 7.64823, 15, 9, 14, 10, 11.7151, 10, -12.0181, 9, -14, 7.93043, -15, -8, -15)
+
+[node name="Card front" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-9.53674e-07, -9.53674e-07)
+scale = Vector2(0.142857, 0.153061)
+texture = ExtResource("2_n0lua")
 
 [node name="Card back" type="Sprite2D" parent="."]
 position = Vector2(-2.85251e-07, -2.38419e-07)
