@@ -13,6 +13,8 @@ var show_play_button: bool = false
 var show_next_player_button: bool = false
 @onready var next_player_button: Button = $"Next Player Button"
 var selected_card_index: int
+var show_next_round_button: bool = false
+@onready var next_round_button: Button = $"Next Round Button"
 
 # Win conditions
 @export var target_points = 720
@@ -174,11 +176,17 @@ func end_round():
 	# Add passive_clock and update clock points
 	for player in players:
 		player.round_points += player.passive_clock * reverse_flow
+		player.round_points_label.show()
 		player.clock += player.round_points
 
 	# Check if there are winners
 	check_clocks()
 
+	if not win:
+		show_next_round_button = true
+		new_turn = false
+
+func start_round():
 	# Return to initial values
 	for player in player_detail:
 		# Delete card node
@@ -186,6 +194,7 @@ func end_round():
 			player["card_played"].queue_free()
 		player["card_played"] = null
 		player["player"].round_points = 0
+		player["player"].round_points_label.hide()
 
 	if reverse_flow != 1:  # To prevent UI update twice
 		reverse_flow = 1
@@ -206,28 +215,6 @@ func next_player():
 	current_player = (current_player + 1) % len(players)
 	turn_on_playable_area(current_player)
 
-
-# TEST
-#var run_once = true
-#func _process(delta: float) -> void:
-	#if run_once:
-		#run_once = false
-		#print("Initial deck: ", deck)
-		#var round = 0
-		#while win == false:
-			#for player_position in len(players):
-				#await start_turn(player_position)
-				#await get_tree().create_timer(1.5).timeout
-				#await end_turn(player_position, 0)
-				#await get_tree().create_timer(1.5).timeout
-				#print("Played cards this round: ", played_cards)
-			#await end_round()
-			#print("Discarded cards this round: ", discard_pile)
-			#print("Deck before end round: ", deck)
-			#print("END ROUND ", round)
-			#round += 1
-			#await get_tree().create_timer(2).timeout
-		#print()
 
 func _on_button_pressed() -> void:
 	await end_turn(current_player, selected_card_index)
@@ -252,7 +239,13 @@ func _on_next_player_button_pressed() -> void:
 	if not win:
 		next_player()
 
-	
+
+func _on_next_round_button_pressed() -> void:
+	new_turn = true
+	show_next_round_button = false
+	start_round()
+
+
 func _process(delta: float) -> void:
 	if not win:
 		if new_turn:
@@ -272,4 +265,33 @@ func _process(delta: float) -> void:
 	else:
 		next_player_button.hide()
 		next_player_button.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	if show_next_round_button:
+		next_round_button.show()
+		next_round_button.process_mode = Node.PROCESS_MODE_INHERIT
+	else:
+		next_round_button.hide()
+		next_round_button.process_mode = Node.PROCESS_MODE_DISABLED
 		
+
+# TEST
+#var run_once = true
+#func _process(delta: float) -> void:
+	#if run_once:
+		#run_once = false
+		#print("Initial deck: ", deck)
+		#var round = 0
+		#while win == false:
+			#for player_position in len(players):
+				#await start_turn(player_position)
+				#await get_tree().create_timer(1.5).timeout
+				#await end_turn(player_position, 0)
+				#await get_tree().create_timer(1.5).timeout
+				#print("Played cards this round: ", played_cards)
+			#await end_round()
+			#print("Discarded cards this round: ", discard_pile)
+			#print("Deck before end round: ", deck)
+			#print("END ROUND ", round)
+			#round += 1
+			#await get_tree().create_timer(2).timeout
+		#print()

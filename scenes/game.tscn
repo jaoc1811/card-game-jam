@@ -47,6 +47,15 @@ offset_right = 108.0
 offset_bottom = 60.0
 text = "Next Player"
 
+[node name="Next Round Button" type="Button" parent="GameManager"]
+process_mode = 4
+visible = false
+offset_left = 10.0
+offset_top = 29.0
+offset_right = 110.0
+offset_bottom = 60.0
+text = "Next Round"
+
 [node name="Win screen" type="Label" parent="GameManager"]
 visible = false
 offset_left = -85.0
@@ -91,6 +100,23 @@ script = ExtResource("2_s7kpw")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
 
+[node name="Passive Clock" type="Label" parent="Player"]
+offset_left = -61.0
+offset_top = -54.0
+offset_right = 45.0
+offset_bottom = -31.0
+scale = Vector2(0.160001, 0.28)
+text = "+0h 30min"
+
+[node name="Round Points" type="Label" parent="Player"]
+visible = false
+offset_left = -61.0
+offset_top = -33.0
+offset_right = 45.0
+offset_bottom = -10.0
+scale = Vector2(0.160001, 0.28)
+text = "Round points"
+
 [node name="Player2" type="Node2D" parent="."]
 script = ExtResource("4_oiryx")
 
@@ -109,6 +135,23 @@ position = Vector2(0, 40)
 script = ExtResource("2_s7kpw")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
+
+[node name="Passive Clock" type="Label" parent="Player2"]
+offset_left = -11.0
+offset_top = -54.0
+offset_right = 95.0
+offset_bottom = -31.0
+scale = Vector2(0.160001, 0.28)
+text = "+0h 30min"
+
+[node name="Round Points" type="Label" parent="Player2"]
+visible = false
+offset_left = -11.0
+offset_top = -33.0
+offset_right = 95.0
+offset_bottom = -10.0
+scale = Vector2(0.160001, 0.28)
+text = "Round points"
 
 [node name="Player3" type="Node2D" parent="."]
 script = ExtResource("4_oiryx")
@@ -150,3 +193,4 @@ cards_rotations = Array[int]([-10, -5, 5, 10])
 
 [connection signal="pressed" from="GameManager/Play Button" to="GameManager" method="_on_button_pressed"]
 [connection signal="pressed" from="GameManager/Next Player Button" to="GameManager" method="_on_next_player_button_pressed"]
+[connection signal="pressed" from="GameManager/Next Round Button" to="GameManager" method="_on_next_round_button_pressed"]
