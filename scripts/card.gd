@@ -57,9 +57,8 @@ func _on_button_button_up() -> void:
 
 
 func _on_button_mouse_entered() -> void:
-	if is_draggable:
-		game_manager.hovering_card_index = get_parent().cards.find(self)
-		is_hovering = true
+	is_hovering = true
+	game_manager.hovering_card_index = get_parent().cards.find(self)
 
 
 func _on_button_mouse_exited() -> void:
