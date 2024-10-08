@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://br2bb1lqno5w6"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_s0j6e"]
+[ext_resource type="Theme" uid="uid://q6cmt5cpvq2" path="res://themes/buton.tres" id="1_ypn5x"]
+[ext_resource type="Texture2D" uid="uid://uag8t02m0swj" path="res://sprites/silver coin/Silver_1.png" id="3_frqec"]
+
+[sub_resource type="Theme" id="Theme_85250"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ypn5x")
+script = ExtResource("1_s0j6e")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 652.0
+texture = ExtResource("3_frqec")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 74.0
+offset_right = 1018.0
+offset_bottom = 181.0
+theme_override_font_sizes/normal_font_size = 70
+text = "NOT GENERIC GAME 11"
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 2
+offset_left = 421.0
+offset_top = 302.0
+offset_right = 704.0
+offset_bottom = 333.0
+text = "Play"
+
+[node name="Sound" type="Button" parent="."]
+layout_mode = 2
+offset_left = 427.0
+offset_top = 339.0
+offset_right = 710.0
+offset_bottom = 370.0
+theme = SubResource("Theme_85250")
+text = "Sound"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 2
+offset_left = 428.0
+offset_top = 382.0
+offset_right = 698.0
+offset_bottom = 410.0
+text = "Quit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Sound" to="." method="_on_sound_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://djxcukmi415ew"]
+
+[ext_resource type="Theme" uid="uid://q6cmt5cpvq2" path="res://themes/buton.tres" id="1_a5cm5"]
+[ext_resource type="Script" path="res://scripts/player_selection.gd" id="2_be2ay"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_a5cm5")
+script = ExtResource("2_be2ay")
+
+[node name="2 Players" type="Button" parent="."]
+layout_mode = 2
+offset_right = 70.0
+offset_bottom = 28.0
+text = "2 Players"
+
+[node name="3 Players" type="Button" parent="."]
+layout_mode = 2
+offset_top = 32.0
+offset_right = 70.0
+offset_bottom = 60.0
+text = "3 Players"
+
+[node name="4 Players" type="Button" parent="."]
+layout_mode = 2
+offset_top = 64.0
+offset_right = 70.0
+offset_bottom = 92.0
+text = "4 Players"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 2
+offset_top = 96.0
+offset_right = 70.0
+offset_bottom = 124.0
+text = "Back"
+
+[connection signal="pressed" from="2 Players" to="." method="_on_2_players_pressed"]
+[connection signal="pressed" from="3 Players" to="." method="_on_3_players_pressed"]
+[connection signal="pressed" from="4 Players" to="." method="_on_4_players_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

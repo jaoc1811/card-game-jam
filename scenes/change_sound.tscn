@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ijlo3p5ighbt"]
+
+[ext_resource type="Theme" uid="uid://q6cmt5cpvq2" path="res://themes/buton.tres" id="1_88oc7"]
+[ext_resource type="Script" path="res://scripts/volume_slider.gd" id="2_vfsxj"]
+
+[node name="volume_slider" type="HSlider"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_88oc7")
+step = 0.001
+script = ExtResource("2_vfsxj")
