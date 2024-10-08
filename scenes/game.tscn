@@ -82,7 +82,7 @@ autowrap_mode = 2
 zoom = Vector2(5, 5)
 
 [node name="Deck" type="Node2D" parent="."]
-position = Vector2(55, 0)
+position = Vector2(97, 43)
 
 [node name="Card" parent="Deck" instance=ExtResource("3_dlhyx")]
 z_index = -1
