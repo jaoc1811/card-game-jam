@@ -12,7 +12,6 @@ func deal_card(card_index: int):
 	cards[card_index].slot_position = slot_position
 	cards[card_index].slot_rotation = slot_rotation
 	await set_card_position_and_rotation(cards[card_index], slot_position, slot_rotation)
-	cards[card_index].is_draggable = true
 
 
 func set_card_position_and_rotation(card: Node2D, position: Vector2, rotation: int):

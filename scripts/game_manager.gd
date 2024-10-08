@@ -118,9 +118,13 @@ func reshuffle_deck() -> void:
 func start_turn(player: int):
 	# Runs each turn
 	var hand: Node2D = players[player].get_node("Hand")
+	for card in hand.cards:
+		card.is_draggable = false
 	await hand.start_turn()
 	await get_tree().create_timer(1).timeout
 	await deal_cards(player)
+	for card in hand.cards:
+		card.is_draggable = true
 
 
 func end_turn(player: int, card_played_index: int):
