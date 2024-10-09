@@ -14,7 +14,7 @@ var show_play_button: bool = false
 var show_next_player_button: bool = false
 @onready var next_player_button: Button = $"Next Player Button"
 var selected_card_index: int
-var hovering_card_index: int = -1
+var hovering_card: Node2D
 var show_next_round_button: bool = false
 @onready var next_round_button: Button = $"Next Round Button"
 @onready var info_card: Node2D = $InfoCard
@@ -169,9 +169,9 @@ func add_points(points):
 	for player_position in points:
 		passive_clock = points[player_position].get("passive_clock", null)
 		round_points = points[player_position].get("round_points", null)
-		if passive_clock:
+		if passive_clock != null:
 			players[player_position].passive_clock += passive_clock
-		if round_points:
+		if round_points != null:
 			players[player_position].round_points += round_points * reverse_flow
 
 
@@ -204,7 +204,7 @@ func end_round():
 		card_played.get_node("Card front").show()
 		points = card_played.play(player_position)
 		add_points(points)
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(2).timeout
 		# Send card to discard pile
 		discard_pile.append(card_played.get_script().get_global_name())
 
@@ -213,7 +213,7 @@ func end_round():
 	# Add passive points
 	for player in players:
 		player.round_points += player.passive_clock * reverse_flow
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(3).timeout
 
 	# Update clock points
 	for player in players:
@@ -274,7 +274,6 @@ func _on_button_pressed() -> void:
 
 func _on_next_player_button_pressed() -> void:
 	button_sfx.play()
-	print("next player btn")
 	#await end_turn(current_player, selected_card_index)
 	show_next_player_button = false
 	if current_player == len(players) - 1:
@@ -292,9 +291,8 @@ func _on_next_round_button_pressed() -> void:
 	next_player()
 	start_round()
 
-func move_info_card_up() -> void:
+func move_info_card_up(hovering_card_type) -> void:
 	var info_card_sprite = info_card.get_node("Sprite")
-	var hovering_card_type = players[current_player].get_node("Hand").cards[hovering_card_index].type
 	info_card_sprite.texture = card_type_sprites[hovering_card_type]
 	var tween = get_tree().create_tween()
 	tween.tween_property(info_card, "position", Vector2(info_card.position.x, 20), 0.1).set_ease(Tween.EASE_OUT)
@@ -335,11 +333,10 @@ func _process(delta: float) -> void:
 	elif  current_player == 2 or current_player == 3:
 		info_card.position = Vector2(-60, info_card.position.y)
 	
-	if hovering_card_index != -1:
-		move_info_card_up()
+	if hovering_card != null:
+		move_info_card_up(hovering_card.type)
 	else:
 		move_info_card_down()
-			
 	
 
 # TEST

@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a25bm"]
 [ext_resource type="Script" path="res://scripts/hand.gd" id="2_s7kpw"]
 [ext_resource type="AudioStream" uid="uid://bxfbx3bmv78qj" path="res://sounds/card.ogg" id="3_342hj"]
+[ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://scenes/card.tscn" id="3_dlhyx"]
 [ext_resource type="AudioStream" uid="uid://dm4bwtlk67qsb" path="res://sounds/deal_card.wav" id="3_s3hhl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_oiryx"]
 [ext_resource type="AudioStream" uid="uid://iqdglvwgqth2" path="res://sounds/button.ogg" id="4_oiydg"]
 [ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://scenes/clock.tscn" id="5_0bued"]
 [ext_resource type="Texture2D" uid="uid://idpwchlq8a0s" path="res://sprites/cards/catch_up_card.png" id="5_68dyi"]
-[ext_resource type="Texture2D" uid="uid://bq86ja46lpgjs" path="res://sprites/cards/back.png" id="6_5yhxc"]
 
 [node name="Game" type="Node2D"]
 
@@ -97,10 +97,8 @@ zoom = Vector2(5, 5)
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(97, 43)
 
-[node name="Card back" type="Sprite2D" parent="Deck"]
-position = Vector2(-2.85251e-07, -2.38419e-07)
-scale = Vector2(0.143, 0.153)
-texture = ExtResource("6_5yhxc")
+[node name="Card" parent="Deck" instance=ExtResource("3_dlhyx")]
+z_index = -1
 
 [node name="StartTurnPosition" type="Node2D" parent="."]
 position = Vector2(140, 0)
