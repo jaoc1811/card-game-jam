@@ -5,7 +5,6 @@ extends Node
 @export var players: Array[Node]
 var player_detail = []  # Array of dicts with ref to player and card played this round
 var current_player: int = 0  # NUMERO QUE REPRESENTA EL JUGADOR (ES EL INDICE CORRESPONDIENTE EN EL ARREGLO PLAYERS)
-#var can_play: bool = false
 
 # Gameloop
 var ready_to_start_game: bool = false
@@ -70,7 +69,6 @@ var playable_areas: Array[Node2D] = []
 	set(new_value):
 		reverse_flow = new_value
 		# TODO: update UI
-		print("reverse flow ", reverse_flow)
 		
 
 func start_game() -> void:
@@ -148,12 +146,10 @@ func deal_cards(player_position: int) -> void:
 
 
 func reshuffle_deck() -> void:
-	print("Reshuffling deck: \n", deck, "\nDiscard pile: \n", discard_pile)
 	deck = discard_pile
 	discard_pile = []
 	# Shuffle deck
 	deck.shuffle()
-	print("Final deck: \n", deck, "\nDiscard pile: \n", discard_pile)
 
 
 func start_turn(player: int):
@@ -339,7 +335,6 @@ func coin_tails_animation():
 	coin_flip_lose.show()
 	coin_flip_lose.play()
 	var duration = coin_flip_lose.sprite_frames.get_frame_count("CoinFlipLose")/coin_flip_lose.sprite_frames.get_animation_speed("CoinFlipLose")
-	print(duration)
 	await get_tree().create_timer(duration + 1,5).timeout
 	coin_flip_lose.hide()
 

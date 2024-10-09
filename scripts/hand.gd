@@ -41,8 +41,3 @@ func end_turn(card_played_index: int):
 		await set_card_position_and_rotation(cards[card_index], GameManager.end_turn_position.position, 0)
 
 	return card_played
-#
-#func _on_button_pressed() -> void:
-	#start_turn()
-	#await get_tree().create_timer(2).timeout
-	#end_turn()

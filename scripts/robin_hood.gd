@@ -20,8 +20,6 @@ func play(player_position: int):
 			max_hours_players.append(player_pos)
 
 	# Get random player
-	#max_hours_players.pick_random().round_points -= 120 * game_manager.reverse_flow
-	#game_manager.players[player_position].round_points += 120 * game_manager.reverse_flow
 	var score = {
 		player_position: {
 			"round_points": 0 # To show animation when no points are added
