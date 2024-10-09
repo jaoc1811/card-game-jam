@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://djxcukmi415ew"]
+[gd_scene load_steps=4 format=3 uid="uid://djxcukmi415ew"]
 
 [ext_resource type="Theme" uid="uid://q6cmt5cpvq2" path="res://themes/buton.tres" id="1_a5cm5"]
 [ext_resource type="Script" path="res://scripts/player_selection.gd" id="2_be2ay"]
+[ext_resource type="Texture2D" uid="uid://c26mh7bdfup6b" path="res://sprites/PXL_20241009_030944919.jpg" id="3_f2i5o"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -13,36 +14,42 @@ grow_vertical = 2
 theme = ExtResource("1_a5cm5")
 script = ExtResource("2_be2ay")
 
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 4032.0
+offset_bottom = 2268.0
+scale = Vector2(0.285758, 0.287126)
+texture = ExtResource("3_f2i5o")
+
 [node name="2 Players" type="Button" parent="."]
 layout_mode = 2
-offset_left = 532.0
-offset_top = 225.0
-offset_right = 602.0
-offset_bottom = 253.0
+offset_left = 538.0
+offset_top = 280.0
+offset_right = 608.0
+offset_bottom = 308.0
 text = "2 Players"
 
 [node name="3 Players" type="Button" parent="."]
 layout_mode = 2
-offset_left = 532.0
-offset_top = 257.0
-offset_right = 602.0
-offset_bottom = 285.0
+offset_left = 538.0
+offset_top = 312.0
+offset_right = 608.0
+offset_bottom = 340.0
 text = "3 Players"
 
 [node name="4 Players" type="Button" parent="."]
 layout_mode = 2
-offset_left = 532.0
-offset_top = 289.0
-offset_right = 602.0
-offset_bottom = 317.0
+offset_left = 538.0
+offset_top = 344.0
+offset_right = 608.0
+offset_bottom = 372.0
 text = "4 Players"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 2
-offset_left = 532.0
-offset_top = 321.0
-offset_right = 602.0
-offset_bottom = 349.0
+offset_left = 538.0
+offset_top = 376.0
+offset_right = 608.0
+offset_bottom = 404.0
 text = "Back"
 
 [connection signal="pressed" from="2 Players" to="." method="_on_2_players_pressed"]

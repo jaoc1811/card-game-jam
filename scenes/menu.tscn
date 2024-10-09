@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_s0j6e"]
 [ext_resource type="Theme" uid="uid://q6cmt5cpvq2" path="res://themes/buton.tres" id="1_ypn5x"]
-[ext_resource type="Texture2D" uid="uid://uag8t02m0swj" path="res://sprites/silver coin/Silver_1.png" id="3_frqec"]
+[ext_resource type="Texture2D" uid="uid://c26mh7bdfup6b" path="res://sprites/PXL_20241009_030944919.jpg" id="3_wph67"]
 
 [sub_resource type="Theme" id="Theme_85250"]
 
@@ -18,18 +18,28 @@ script = ExtResource("1_s0j6e")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 652.0
-texture = ExtResource("3_frqec")
+offset_right = 4032.0
+offset_bottom = 2268.0
+scale = Vector2(0.285758, 0.287126)
+texture = ExtResource("3_wph67")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 84.0
+offset_right = 338.0
+offset_bottom = 124.0
+scale = Vector2(13.0122, 2.0433)
 
 [node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 227.0
+offset_left = 157.0
 offset_top = 74.0
-offset_right = 1018.0
+offset_right = 948.0
 offset_bottom = 181.0
 theme_override_font_sizes/normal_font_size = 70
-text = "NOT GENERIC GAME 11"
+bbcode_enabled = true
+text = "[center]Midnight Wish[/center]"
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 2

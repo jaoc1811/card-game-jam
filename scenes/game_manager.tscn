@@ -12,7 +12,6 @@
 script = ExtResource("1_faf1t")
 num_of_players = 2
 players = [null, null]
-target_points = 60
 deck_type = {
 "catch_up": 3,
 "feeling_lucky": 10,
