@@ -32,10 +32,13 @@ func get_clock_minutes(points: int)  -> int:
 
 
 func get_points_str(points: int):
-	var points_str = str(get_clock_hours(points)) + "h"
+	var points_str = str(abs(get_clock_hours(points))) + "h"
 	var minutes = get_clock_minutes(points)
-	if minutes > 0:
-		points_str += " " + str(minutes) + "min"
+	print(self.name, " points ", points, " minutes ", minutes)
+	if minutes != 0:
+		points_str += " " + str(abs(minutes)) + "min"
 	if points >= 0:
 		points_str = "+" + points_str
+	else:
+		points_str = "-" + points_str
 	return points_str
