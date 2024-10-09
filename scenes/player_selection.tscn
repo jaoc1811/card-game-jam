@@ -15,6 +15,7 @@ theme = ExtResource("1_a5cm5")
 script = ExtResource("2_be2ay")
 
 [node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 4032.0
 offset_bottom = 2268.0
 scale = Vector2(0.285758, 0.287126)
