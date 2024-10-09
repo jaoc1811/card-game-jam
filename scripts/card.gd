@@ -57,11 +57,12 @@ func _on_button_button_up() -> void:
 
 func _on_button_mouse_entered() -> void:
 	is_hovering = true
-	GameManager.hovering_card_index = get_parent().cards.find(self)
+	if get_node("Card front").is_visible():
+		GameManager.hovering_card = self
 
 
 func _on_button_mouse_exited() -> void:
-	GameManager.hovering_card_index = -1
+	GameManager.hovering_card = null
 	is_hovering = false
 
 
