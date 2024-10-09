@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf8efmup4fwkb"]
+[gd_scene load_steps=8 format=3 uid="uid://bf8efmup4fwkb"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_faf1t"]
 [ext_resource type="AudioStream" uid="uid://dm4bwtlk67qsb" path="res://sounds/deal_card.wav" id="2_uekps"]
 [ext_resource type="AudioStream" uid="uid://bxfbx3bmv78qj" path="res://sounds/card.ogg" id="3_tus7b"]
 [ext_resource type="AudioStream" uid="uid://iqdglvwgqth2" path="res://sounds/button.ogg" id="4_byr0j"]
+[ext_resource type="AudioStream" uid="uid://d3o1bnvytnonq" path="res://sounds/add_passive.ogg" id="5_mxa2w"]
 [ext_resource type="Texture2D" uid="uid://idpwchlq8a0s" path="res://sprites/cards/catch_up_card.png" id="5_wyamj"]
+[ext_resource type="AudioStream" uid="uid://c0siwgh85mgqf" path="res://sounds/add_time.ogg" id="6_mi0yc"]
 
 [node name="GameManager" type="Node" node_paths=PackedStringArray("players")]
 script = ExtResource("1_faf1t")
@@ -30,6 +32,14 @@ bus = &"SFX"
 
 [node name="ButtonSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_byr0j")
+bus = &"SFX"
+
+[node name="AddPassiveSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_mxa2w")
+bus = &"SFX"
+
+[node name="AddTimeSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_mi0yc")
 bus = &"SFX"
 
 [node name="Play Button" type="Button" parent="."]

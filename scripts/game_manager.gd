@@ -62,6 +62,8 @@ var playable_areas: Array[Node2D] = []
 @onready var deal_card_sfx: AudioStreamPlayer2D = $DealCardSFX
 @onready var take_card_sfx: AudioStreamPlayer2D = $TakeCardSFX
 @onready var button_sfx: AudioStreamPlayer2D = $ButtonSFX
+@onready var add_time_sfx: AudioStreamPlayer2D = $AddTimeSFX
+@onready var add_passive_sfx: AudioStreamPlayer2D = $AddPassiveSFX
 
 # Either 1 or -1
 @export var reverse_flow: int = 1:
@@ -220,6 +222,7 @@ func end_round():
 		card_played.get_node("Card front").show()
 		points = await card_played.play(player_position)
 		add_points(points)
+		add_time_sfx.play()
 		await get_tree().create_timer(2).timeout
 		# Send card to discard pile
 		discard_pile.append(card_played.get_script().get_global_name())
@@ -229,6 +232,7 @@ func end_round():
 	# Add passive points
 	for player in players:
 		player.round_points += player.passive_clock * reverse_flow
+		add_passive_sfx.play()
 	await get_tree().create_timer(3).timeout
 
 	# Update clock points

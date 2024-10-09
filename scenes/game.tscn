@@ -351,7 +351,7 @@ script = ExtResource("4_oiryx")
 process_mode = 4
 visible = false
 z_index = -1
-position = Vector2(-75, 0)
+position = Vector2(25, 0)
 
 [node name="Clock" parent="Player3" instance=ExtResource("5_0bued")]
 position = Vector2(25, -40)
@@ -363,6 +363,23 @@ script = ExtResource("2_s7kpw")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
 
+[node name="Passive Clock" type="Label" parent="Player3"]
+offset_left = 39.0
+offset_top = -54.0
+offset_right = 145.0
+offset_bottom = -31.0
+scale = Vector2(0.160001, 0.28)
+text = "+0h 30min"
+
+[node name="Round Points" type="Label" parent="Player3"]
+visible = false
+offset_left = 39.0
+offset_top = -33.0
+offset_right = 145.0
+offset_bottom = -10.0
+scale = Vector2(0.160001, 0.28)
+text = "Round points"
+
 [node name="Player4" type="Node2D" parent="." groups=["player"]]
 script = ExtResource("4_oiryx")
 
@@ -370,7 +387,7 @@ script = ExtResource("4_oiryx")
 process_mode = 4
 visible = false
 z_index = -1
-position = Vector2(-75, 0)
+position = Vector2(75, 0)
 
 [node name="Clock" parent="Player4" instance=ExtResource("5_0bued")]
 position = Vector2(75, -40)
@@ -381,6 +398,23 @@ position = Vector2(0, 40)
 script = ExtResource("2_s7kpw")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
+
+[node name="Passive Clock" type="Label" parent="Player4"]
+offset_left = 93.0
+offset_top = -54.0
+offset_right = 199.0
+offset_bottom = -31.0
+scale = Vector2(0.160001, 0.28)
+text = "+0h 30min"
+
+[node name="Round Points" type="Label" parent="Player4"]
+visible = false
+offset_left = 93.0
+offset_top = -33.0
+offset_right = 199.0
+offset_bottom = -10.0
+scale = Vector2(0.160001, 0.28)
+text = "Round points"
 
 [node name="GameStarter" type="Node" parent="."]
 script = ExtResource("7_6ak3t")
