@@ -5,7 +5,7 @@ extends Node
 @export var players: Array[Node]
 var player_detail = []  # Array of dicts with ref to player and card played this round
 var current_player: int = 0  # NUMERO QUE REPRESENTA EL JUGADOR (ES EL INDICE CORRESPONDIENTE EN EL ARREGLO PLAYERS)
-var can_play: bool = false
+#var can_play: bool = false
 
 # Gameloop
 var ready_to_start_game: bool = false
@@ -24,7 +24,6 @@ var show_next_round_button: bool = false
 # Win conditions
 @export var target_points = 720
 var win = false
-@onready var win_screen: Label = $"Win screen"
 
 # Deck
 @export var deck_type = {}  # Dict with ref to card type and amount of cards per type
@@ -77,7 +76,8 @@ func start_game() -> void:
 	deck_node = get_tree().get_first_node_in_group("deck")
 	start_turn_position = get_tree().get_first_node_in_group("start_turn_position")
 	end_turn_position = get_tree().get_first_node_in_group("end_turn_position")
-	
+	player_detail = []
+
 	for i in len(players)-num_of_players:
 		var player = players.pop_back()
 		player.queue_free()
@@ -97,6 +97,9 @@ func start_game() -> void:
 	# Create & shuffle deck
 	create_deck()
 	game_started = true
+	win = false
+	current_player = 0
+	new_turn = true
 	self.get_node("InfoCard").show()
 
 
@@ -190,12 +193,17 @@ func check_clocks():
 			winners.append("Player " + str(player_position + 1))
 	if len(winners) > 0:
 		win = true
+		self.get_node("InfoCard").hide()
 		for player in len(players):
 			turn_off_playable_area(player)
-		win_screen.text = "Winners:\n" if len(winners) > 1 else "Winner:\n"
-		win_screen.text += ", ".join(winners)
-		win_screen.show()
-		# TODO: show back to menu button that reloads scene
+			if is_instance_valid(player_detail[player]["card_played"]):
+				player_detail[player]["card_played"].queue_free()
+		var win_screen = get_tree().get_first_node_in_group("win_screen")
+		var win_text = "Winners:\n" if len(winners) > 1 else "Winner:\n"
+		win_text += ", ".join(winners)
+		win_screen.get_node("Win text").text = win_text
+		for children in win_screen.get_children():
+			children.show()
 
 
 func end_round():
@@ -210,7 +218,7 @@ func end_round():
 		card_played = player_detail[player_position]["card_played"]
 		card_played.get_node("Card back").hide()
 		card_played.get_node("Card front").show()
-		points = card_played.play(player_position)
+		points = await card_played.play(player_position)
 		add_points(points)
 		await get_tree().create_timer(2).timeout
 		# Send card to discard pile
@@ -299,15 +307,37 @@ func _on_next_round_button_pressed() -> void:
 	next_player()
 	start_round()
 
+
 func move_info_card_up(hovering_card_type) -> void:
 	var info_card_sprite = info_card.get_node("Sprite")
 	info_card_sprite.texture = card_type_sprites[hovering_card_type]
 	var tween = get_tree().create_tween()
 	tween.tween_property(info_card, "position", Vector2(info_card.position.x, 20), 0.1).set_ease(Tween.EASE_OUT)
 
+
 func move_info_card_down() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(info_card, "position", Vector2(info_card.position.x, 110), 0.1).set_ease(Tween.EASE_OUT)
+
+
+func coin_heads_animation():
+	var coin_flip_win: AnimatedSprite2D = get_tree().get_first_node_in_group("coin_flip_win")
+	coin_flip_win.show()
+	coin_flip_win.play()
+	var duration = coin_flip_win.sprite_frames.get_frame_count("CoinFlipWin")/coin_flip_win.sprite_frames.get_animation_speed("CoinFlipWin")
+	await get_tree().create_timer(duration + 1,5).timeout
+	coin_flip_win.hide()
+
+
+func coin_tails_animation():
+	var coin_flip_lose: AnimatedSprite2D = get_tree().get_first_node_in_group("coin_flip_lose")
+	coin_flip_lose.show()
+	coin_flip_lose.play()
+	var duration = coin_flip_lose.sprite_frames.get_frame_count("CoinFlipLose")/coin_flip_lose.sprite_frames.get_animation_speed("CoinFlipLose")
+	print(duration)
+	await get_tree().create_timer(duration + 1,5).timeout
+	coin_flip_lose.hide()
+
 
 func _process(delta: float) -> void:
 	if ready_to_start_game:
@@ -352,26 +382,3 @@ func _process(delta: float) -> void:
 		move_info_card_up(hovering_card.type)
 	else:
 		move_info_card_down()
-	
-
-# TEST
-#var run_once = true
-#func _process(delta: float) -> void:
-	#if run_once:
-		#run_once = false
-		#print("Initial deck: ", deck)
-		#var round = 0
-		#while win == false:
-			#for player_position in len(players):
-				#await start_turn(player_position)
-				#await get_tree().create_timer(1.5).timeout
-				#await end_turn(player_position, 0)
-				#await get_tree().create_timer(1.5).timeout
-				#print("Played cards this round: ", played_cards)
-			#await end_round()
-			#print("Discarded cards this round: ", discard_pile)
-			#print("Deck before end round: ", deck)
-			#print("END ROUND ", round)
-			#round += 1
-			#await get_tree().create_timer(2).timeout
-		#print()

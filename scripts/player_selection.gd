@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 func _on_2_players_pressed() -> void:
 	GameManager.num_of_players = 2
