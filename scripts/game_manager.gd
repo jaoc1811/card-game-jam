@@ -79,6 +79,7 @@ func start_game() -> void:
 	start_turn_position = get_tree().get_first_node_in_group("start_turn_position")
 	end_turn_position = get_tree().get_first_node_in_group("end_turn_position")
 	player_detail = []
+	playable_areas = []
 
 	for i in len(players)-num_of_players:
 		var player = players.pop_back()
