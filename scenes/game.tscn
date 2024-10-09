@@ -1,11 +1,261 @@
-[gd_scene load_steps=7 format=3 uid="uid://ds26kfofiymge"]
+[gd_scene load_steps=29 format=3 uid="uid://ds26kfofiymge"]
 
 [ext_resource type="PackedScene" uid="uid://dqr0duh0wktdr" path="res://scenes/playable_area.tscn" id="1_3dq6o"]
 [ext_resource type="Script" path="res://scripts/hand.gd" id="2_s7kpw"]
 [ext_resource type="PackedScene" uid="uid://b4fxyppywr8fx" path="res://scenes/card.tscn" id="3_dlhyx"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_oiryx"]
 [ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://scenes/clock.tscn" id="5_0bued"]
+[ext_resource type="Texture2D" uid="uid://d2a5yaif5cf78" path="res://sprites/silver coin/Silver_20.png" id="7_4ckpp"]
 [ext_resource type="Script" path="res://scripts/game_starter.gd" id="7_6ak3t"]
+[ext_resource type="Texture2D" uid="uid://duti63dobueas" path="res://sprites/silver coin/Silver_11.png" id="8_krr4j"]
+[ext_resource type="Texture2D" uid="uid://cledr1nwjdqp2" path="res://sprites/silver coin/Silver_12.png" id="9_fro52"]
+[ext_resource type="Texture2D" uid="uid://cy8jb76tlbbyl" path="res://sprites/silver coin/Silver_13.png" id="10_hmc7y"]
+[ext_resource type="Texture2D" uid="uid://drq65j1ofmnsg" path="res://sprites/silver coin/Silver_14.png" id="11_3wg5d"]
+[ext_resource type="Texture2D" uid="uid://bf00hkrvfb07a" path="res://sprites/silver coin/Silver_15.png" id="12_xcv5a"]
+[ext_resource type="Texture2D" uid="uid://buih2kti32xr2" path="res://sprites/silver coin/Silver_25.png" id="13_fbb7x"]
+[ext_resource type="Texture2D" uid="uid://c0shjrox7f3ox" path="res://sprites/silver coin/Silver_24.png" id="14_moxjw"]
+[ext_resource type="Texture2D" uid="uid://chyvcm2mhq64n" path="res://sprites/silver coin/Silver_23.png" id="15_2r1xy"]
+[ext_resource type="Texture2D" uid="uid://bepvwvpscuakh" path="res://sprites/silver coin/Silver_22.png" id="16_6xisk"]
+[ext_resource type="Texture2D" uid="uid://btcqxp2e24udi" path="res://sprites/silver coin/Silver_21.png" id="17_lywwf"]
+[ext_resource type="Texture2D" uid="uid://da5jvlhrwa3ec" path="res://sprites/silver coin/Silver_30.png" id="18_3wt7m"]
+[ext_resource type="Texture2D" uid="uid://db2di82hflp7t" path="res://sprites/silver coin/Silver_29.png" id="19_g8444"]
+[ext_resource type="Texture2D" uid="uid://d33g8mmjunnti" path="res://sprites/silver coin/Silver_28.png" id="20_wibl5"]
+[ext_resource type="Texture2D" uid="uid://b24f4ski3eknv" path="res://sprites/silver coin/Silver_27.png" id="21_3b41x"]
+[ext_resource type="Texture2D" uid="uid://upsv3bwsr6gt" path="res://sprites/silver coin/Silver_26.png" id="22_gxpa5"]
+[ext_resource type="Texture2D" uid="uid://b8jm81buohftg" path="res://sprites/silver coin/Silver_16.png" id="23_77po6"]
+[ext_resource type="Texture2D" uid="uid://bsh0kq5vldyok" path="res://sprites/silver coin/Silver_17.png" id="24_eigjv"]
+[ext_resource type="Texture2D" uid="uid://b227hn8ihemes" path="res://sprites/silver coin/Silver_18.png" id="25_tb1b5"]
+[ext_resource type="Texture2D" uid="uid://bh6rk8mmjxxe4" path="res://sprites/silver coin/Silver_19.png" id="26_bv3vx"]
+[ext_resource type="Script" path="res://scripts/player_selection.gd" id="27_l0s2r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kgld5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_4ckpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_krr4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fro52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hmc7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3wg5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xcv5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fbb7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_moxjw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2r1xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6xisk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_lywwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_3wt7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_g8444")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_wibl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3b41x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_gxpa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_77po6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_eigjv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_tb1b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_bv3vx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4ckpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_krr4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fro52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hmc7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3wg5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xcv5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fbb7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_moxjw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2r1xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6xisk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_lywwf")
+}],
+"loop": false,
+"name": &"CoinFlipLose",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_4ckpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_krr4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fro52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hmc7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3wg5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xcv5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fbb7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_moxjw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2r1xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6xisk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_lywwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_3wt7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_g8444")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_wibl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3b41x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_gxpa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_77po6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_eigjv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_tb1b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_bv3vx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4ckpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_krr4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fro52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hmc7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3wg5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xcv5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fbb7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_moxjw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2r1xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6xisk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_lywwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_3wt7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_g8444")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_wibl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3b41x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_gxpa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_77po6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_eigjv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_tb1b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_bv3vx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4ckpp")
+}],
+"loop": false,
+"name": &"CoinFlipWin",
+"speed": 15.0
+}]
 
 [node name="Game" type="Node2D"]
 
@@ -134,3 +384,44 @@ cards_rotations = Array[int]([-10, -5, 5, 10])
 
 [node name="GameStarter" type="Node" parent="."]
 script = ExtResource("7_6ak3t")
+
+[node name="CoinFlip" type="Node2D" parent="."]
+rotation = 1.5708
+
+[node name="Lose" type="AnimatedSprite2D" parent="CoinFlip" groups=["coin_flip_lose"]]
+visible = false
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_kgld5")
+animation = &"CoinFlipLose"
+
+[node name="Win" type="AnimatedSprite2D" parent="CoinFlip" groups=["coin_flip_win"]]
+visible = false
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_kgld5")
+animation = &"CoinFlipWin"
+
+[node name="Win screen" type="Node" parent="." groups=["win_screen"]]
+script = ExtResource("27_l0s2r")
+
+[node name="Win text" type="Label" parent="Win screen"]
+visible = false
+z_index = 20
+offset_left = -85.0
+offset_top = -39.0
+offset_right = 87.0
+offset_bottom = 36.0
+text = "Winners:
+Player 1, Player 2,  Player 3"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Back" type="Button" parent="Win screen"]
+visible = false
+offset_left = -22.0
+offset_top = 39.0
+offset_right = 48.0
+offset_bottom = 70.0
+scale = Vector2(0.679999, 0.64)
+text = "Back"
+
+[connection signal="pressed" from="Win screen/Back" to="Win screen" method="_on_back_pressed"]

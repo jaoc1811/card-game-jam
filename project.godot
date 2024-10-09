@@ -35,6 +35,9 @@ start_turn_position=""
 end_turn_position=""
 playable_area=""
 deck=""
+coin_flip_win=""
+coin_flip_lose=""
+win_screen=""
 
 [input]
 

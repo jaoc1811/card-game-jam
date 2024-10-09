@@ -10,12 +10,14 @@
 script = ExtResource("1_faf1t")
 num_of_players = 2
 players = [null, null]
+target_points = 60
 deck_type = {
 "catch_up": 3,
+"feeling_lucky": 10,
 "hang_around": 2,
 "reverse_flow": 2,
-"robin_hood": 3,
-"time_investment": 3
+"robin_hood": 2,
+"time_investment": 2
 }
 
 [node name="DealCardSFX" type="AudioStreamPlayer2D" parent="."]
@@ -33,40 +35,28 @@ bus = &"SFX"
 [node name="Play Button" type="Button" parent="."]
 process_mode = 4
 visible = false
-offset_left = 49.0
+offset_left = -100.0
 offset_top = 29.0
-offset_right = 100.0
+offset_right = -49.0
 offset_bottom = 60.0
 text = "Play"
 
 [node name="Next Player Button" type="Button" parent="."]
 process_mode = 4
 visible = false
-offset_left = 10.0
+offset_left = -100.0
 offset_top = 29.0
-offset_right = 108.0
+offset_right = -2.0
 offset_bottom = 60.0
 text = "Next Player"
 
 [node name="Next Round Button" type="Button" parent="."]
 process_mode = 4
 visible = false
-offset_left = 10.0
+offset_left = -100.0
 offset_top = 29.0
-offset_right = 110.0
 offset_bottom = 60.0
 text = "Next Round"
-
-[node name="Win screen" type="Label" parent="."]
-visible = false
-offset_left = -85.0
-offset_top = -39.0
-offset_right = 87.0
-offset_bottom = 36.0
-text = "Winners:
-Player 1, Player 2,  Player 3"
-horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="InfoCard" type="Node2D" parent="."]
 visible = false

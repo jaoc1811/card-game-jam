@@ -41,9 +41,9 @@ text = "Play"
 
 [node name="Sound" type="Button" parent="."]
 layout_mode = 2
-offset_left = 427.0
+offset_left = 422.0
 offset_top = 339.0
-offset_right = 710.0
+offset_right = 705.0
 offset_bottom = 370.0
 theme = SubResource("Theme_85250")
 text = "Sound"
@@ -59,10 +59,11 @@ text = "How to play"
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 2
-offset_left = 437.0
-offset_top = 418.0
-offset_right = 707.0
-offset_bottom = 446.0
+offset_left = 424.0
+offset_top = 412.0
+offset_right = 694.0
+offset_bottom = 440.0
+scale = Vector2(1.03884, 1.04939)
 text = "Quit"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

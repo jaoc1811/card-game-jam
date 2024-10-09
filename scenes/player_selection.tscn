@@ -15,29 +15,34 @@ script = ExtResource("2_be2ay")
 
 [node name="2 Players" type="Button" parent="."]
 layout_mode = 2
-offset_right = 70.0
-offset_bottom = 28.0
+offset_left = 532.0
+offset_top = 225.0
+offset_right = 602.0
+offset_bottom = 253.0
 text = "2 Players"
 
 [node name="3 Players" type="Button" parent="."]
 layout_mode = 2
-offset_top = 32.0
-offset_right = 70.0
-offset_bottom = 60.0
+offset_left = 532.0
+offset_top = 257.0
+offset_right = 602.0
+offset_bottom = 285.0
 text = "3 Players"
 
 [node name="4 Players" type="Button" parent="."]
 layout_mode = 2
-offset_top = 64.0
-offset_right = 70.0
-offset_bottom = 92.0
+offset_left = 532.0
+offset_top = 289.0
+offset_right = 602.0
+offset_bottom = 317.0
 text = "4 Players"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 2
-offset_top = 96.0
-offset_right = 70.0
-offset_bottom = 124.0
+offset_left = 532.0
+offset_top = 321.0
+offset_right = 602.0
+offset_bottom = 349.0
 text = "Back"
 
 [connection signal="pressed" from="2 Players" to="." method="_on_2_players_pressed"]
