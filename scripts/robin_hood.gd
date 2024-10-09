@@ -9,13 +9,13 @@ func play(player_position: int):
 	var max_hours = 0
 
 	# Get max hours
-	for player in game_manager.players:
+	for player in GameManager.players:
 		if player.clock > max_hours:
 			max_hours = player.clock
 
 	# Get players with max hours
-	for player_pos in len(game_manager.players):
-		if (game_manager.players[player_pos].clock == max_hours 
+	for player_pos in len(GameManager.players):
+		if (GameManager.players[player_pos].clock == max_hours 
 			and player_pos != player_position):
 			max_hours_players.append(player_pos)
 

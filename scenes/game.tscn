@@ -1,98 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds26kfofiymge"]
+[gd_scene load_steps=7 format=3 uid="uid://ds26kfofiymge"]
 
-[ext_resource type="PackedScene" uid="uid://dqr0duh0wktdr" path="res://scenes/deck.tscn" id="1_3dq6o"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a25bm"]
+[ext_resource type="PackedScene" uid="uid://dqr0duh0wktdr" path="res://scenes/playable_area.tscn" id="1_3dq6o"]
 [ext_resource type="Script" path="res://scripts/hand.gd" id="2_s7kpw"]
-[ext_resource type="AudioStream" uid="uid://bxfbx3bmv78qj" path="res://sounds/card.ogg" id="3_342hj"]
-[ext_resource type="AudioStream" uid="uid://dm4bwtlk67qsb" path="res://sounds/deal_card.wav" id="3_s3hhl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_oiryx"]
-[ext_resource type="AudioStream" uid="uid://iqdglvwgqth2" path="res://sounds/button.ogg" id="4_oiydg"]
 [ext_resource type="PackedScene" uid="uid://cwlhuox3mc4k" path="res://scenes/clock.tscn" id="5_0bued"]
-[ext_resource type="Texture2D" uid="uid://idpwchlq8a0s" path="res://sprites/cards/catch_up_card.png" id="5_68dyi"]
 [ext_resource type="Texture2D" uid="uid://bq86ja46lpgjs" path="res://sprites/cards/back.png" id="6_5yhxc"]
+[ext_resource type="Script" path="res://scripts/game_starter.gd" id="7_6ak3t"]
 
 [node name="Game" type="Node2D"]
-
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("players", "deck_node", "start_turn_position", "end_turn_position")]
-unique_name_in_owner = true
-script = ExtResource("1_a25bm")
-num_of_players = 2
-players = [NodePath("../Player"), NodePath("../Player2")]
-deck_type = {
-"catch_up": 3,
-"hang_around": 2,
-"reverse_flow": 2,
-"robin_hood": 3,
-"time_investment": 3
-}
-deck_node = NodePath("../Deck")
-start_turn_position = NodePath("../StartTurnPosition")
-end_turn_position = NodePath("../EndTurnPosition")
-
-[node name="DealCardSFX" type="AudioStreamPlayer2D" parent="GameManager"]
-stream = ExtResource("3_s3hhl")
-bus = &"SFX"
-
-[node name="TakeCardSFX" type="AudioStreamPlayer2D" parent="GameManager"]
-stream = ExtResource("3_342hj")
-bus = &"SFX"
-
-[node name="ButtonSFX" type="AudioStreamPlayer2D" parent="GameManager"]
-stream = ExtResource("4_oiydg")
-bus = &"SFX"
-
-[node name="Play Button" type="Button" parent="GameManager"]
-process_mode = 4
-visible = false
-offset_left = 49.0
-offset_top = 29.0
-offset_right = 100.0
-offset_bottom = 60.0
-text = "Play"
-
-[node name="Next Player Button" type="Button" parent="GameManager"]
-process_mode = 4
-visible = false
-offset_left = 10.0
-offset_top = 29.0
-offset_right = 108.0
-offset_bottom = 60.0
-text = "Next Player"
-
-[node name="Next Round Button" type="Button" parent="GameManager"]
-process_mode = 4
-visible = false
-offset_left = 10.0
-offset_top = 29.0
-offset_right = 110.0
-offset_bottom = 60.0
-text = "Next Round"
-
-[node name="Win screen" type="Label" parent="GameManager"]
-visible = false
-offset_left = -85.0
-offset_top = -39.0
-offset_right = 87.0
-offset_bottom = 36.0
-text = "Winners:
-Player 1, Player 2,  Player 3"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="InfoCard" type="Node2D" parent="GameManager"]
-z_index = 5
-position = Vector2(0, 110)
-scale = Vector2(2.5, 2.5)
-
-[node name="Sprite" type="Sprite2D" parent="GameManager/InfoCard"]
-position = Vector2(-5.96046e-08, 0.0600018)
-scale = Vector2(0.0416667, 0.0448214)
-texture = ExtResource("5_68dyi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
 
-[node name="Deck" type="Node2D" parent="."]
+[node name="Deck" type="Node2D" parent="." groups=["deck"]]
 position = Vector2(97, 43)
 
 [node name="Card back" type="Sprite2D" parent="Deck"]
@@ -100,13 +20,13 @@ position = Vector2(-2.85251e-07, -2.38419e-07)
 scale = Vector2(0.143, 0.153)
 texture = ExtResource("6_5yhxc")
 
-[node name="StartTurnPosition" type="Node2D" parent="."]
+[node name="StartTurnPosition" type="Node2D" parent="." groups=["start_turn_position"]]
 position = Vector2(140, 0)
 
-[node name="EndTurnPosition" type="Node2D" parent="."]
+[node name="EndTurnPosition" type="Node2D" parent="." groups=["end_turn_position"]]
 position = Vector2(-140, 0)
 
-[node name="Player" type="Node2D" parent="."]
+[node name="Player" type="Node2D" parent="." groups=["player"]]
 script = ExtResource("4_oiryx")
 
 [node name="PlayableArea" parent="Player" instance=ExtResource("1_3dq6o")]
@@ -140,7 +60,7 @@ offset_bottom = -10.0
 scale = Vector2(0.160001, 0.28)
 text = "Round points"
 
-[node name="Player2" type="Node2D" parent="."]
+[node name="Player2" type="Node2D" parent="." groups=["player"]]
 script = ExtResource("4_oiryx")
 
 [node name="PlayableArea" parent="Player2" instance=ExtResource("1_3dq6o")]
@@ -176,7 +96,7 @@ offset_bottom = -10.0
 scale = Vector2(0.160001, 0.28)
 text = "Round points"
 
-[node name="Player3" type="Node2D" parent="."]
+[node name="Player3" type="Node2D" parent="." groups=["player"]]
 script = ExtResource("4_oiryx")
 
 [node name="PlayableArea" parent="Player3" instance=ExtResource("1_3dq6o")]
@@ -195,7 +115,7 @@ script = ExtResource("2_s7kpw")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
 
-[node name="Player4" type="Node2D" parent="."]
+[node name="Player4" type="Node2D" parent="." groups=["player"]]
 script = ExtResource("4_oiryx")
 
 [node name="PlayableArea" parent="Player4" instance=ExtResource("1_3dq6o")]
@@ -214,6 +134,5 @@ script = ExtResource("2_s7kpw")
 cards_positions = Array[Vector2]([Vector2(-20, 0), Vector2(-5, -2), Vector2(8, -2), Vector2(20, 0)])
 cards_rotations = Array[int]([-10, -5, 5, 10])
 
-[connection signal="pressed" from="GameManager/Play Button" to="GameManager" method="_on_button_pressed"]
-[connection signal="pressed" from="GameManager/Next Player Button" to="GameManager" method="_on_next_player_button_pressed"]
-[connection signal="pressed" from="GameManager/Next Round Button" to="GameManager" method="_on_next_round_button_pressed"]
+[node name="GameStarter" type="Node" parent="."]
+script = ExtResource("7_6ak3t")

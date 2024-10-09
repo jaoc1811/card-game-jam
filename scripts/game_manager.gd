@@ -8,6 +8,8 @@ var current_player: int = 0  # NUMERO QUE REPRESENTA EL JUGADOR (ES EL INDICE CO
 var can_play: bool = false
 
 # Gameloop
+var ready_to_start_game: bool = false
+var game_started: bool = false
 var new_turn: bool = true
 var show_play_button: bool = false
 @onready var play_button: Button = $"Play Button"
@@ -67,10 +69,14 @@ var playable_areas: Array[Node2D] = []
 		reverse_flow = new_value
 		# TODO: update UI
 		print("reverse flow ", reverse_flow)
+		
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func start_game() -> void:
+	players = get_tree().get_nodes_in_group("player")
+	deck_node = get_tree().get_first_node_in_group("deck")
+	start_turn_position = get_tree().get_first_node_in_group("start_turn_position")
+	end_turn_position = get_tree().get_first_node_in_group("end_turn_position")
+	
 	for i in len(players)-num_of_players:
 		var player = players.pop_back()
 		player.queue_free()
@@ -89,6 +95,8 @@ func _ready() -> void:
 
 	# Create & shuffle deck
 	create_deck()
+	game_started = true
+	self.get_node("InfoCard").show()
 
 
 func create_deck() -> void:
@@ -126,7 +134,7 @@ func deal_cards(player_position: int) -> void:
 		card_front_sprite.texture = card_type_sprites[next_card_type]
 		card_front_sprite.show()
 		next_card.playable_area = playable_areas[player_position]
-		next_card.game_manager = self
+		#next_card.game_manager = self
 		next_card.shadow = next_card.get_node("Shadow")
 
 		await hand.deal_card(card_index)
@@ -290,6 +298,13 @@ func move_info_card_down() -> void:
 	tween.tween_property(info_card, "position", Vector2(info_card.position.x, 110), 0.1).set_ease(Tween.EASE_OUT)
 
 func _process(delta: float) -> void:
+	if ready_to_start_game:
+		ready_to_start_game = false
+		start_game()
+	
+	if !game_started:
+		return
+		
 	if not win:
 		if new_turn:
 			new_turn = false

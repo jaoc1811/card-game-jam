@@ -7,7 +7,7 @@ func play(player_position: int):
 	#game_manager.players[player_position].passive_clock -= 15
 	#game_manager.players[player_position].round_points += 240 * game_manager.reverse_flow
 	
-	if game_manager.players[player_position].passive_clock <= 15:
+	if GameManager.players[player_position].passive_clock <= 15:
 		return {
 			player_position: {
 				"passive_clock": 0,

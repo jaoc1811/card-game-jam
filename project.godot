@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Card Game Jam"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,7 @@ buses/default_bus_layout="res://sounds/default_bus_layout.tres"
 [autoload]
 
 Music="*res://scenes/music.tscn"
+GameManager="*res://scenes/game_manager.tscn"
 
 [display]
 
@@ -29,6 +30,10 @@ window/size/resizable=false
 
 [global_group]
 
+player=""
+start_turn_position=""
+end_turn_position=""
+playable_area=""
 deck=""
 
 [input]

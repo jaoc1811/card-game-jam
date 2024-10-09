@@ -3,7 +3,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whl0c"]
 size = Vector2(20, 30)
 
-[node name="deck" type="StaticBody2D" groups=["deck"]]
+[node name="playable_area" type="StaticBody2D" groups=["playable_area"]]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8

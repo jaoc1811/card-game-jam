@@ -1,7 +1,6 @@
 class_name Card
 extends Node2D
 
-@onready var game_manager: Node = %GameManager
 @onready var shadow: Polygon2D = $Shadow
 
 @export var is_hovering = false
@@ -26,9 +25,9 @@ func _process(delta):
 
 func _on_button_button_down() -> void:
 	if is_draggable:
-		game_manager.take_card_sfx.play()
+		GameManager.take_card_sfx.play()
 		is_dragging = true
-		game_manager.show_play_button = false
+		GameManager.show_play_button = false
 		offset = get_global_mouse_position() - position
 		var tween = get_tree().create_tween()
 		self.z_index = 1
@@ -38,43 +37,43 @@ func _on_button_button_down() -> void:
 
 func _on_button_button_up() -> void:
 	if is_dragging:
-		game_manager.take_card_sfx.play()
+		GameManager.take_card_sfx.play()
 		is_dragging = false
 		var tween = get_tree().create_tween()
 		self.z_index = 0
 		tween.tween_property(shadow, "position", Vector2(0, 0), 0.1).set_ease(Tween.EASE_OUT)
 		if is_inside_playable_area and playable_area.get_meta("card", null):
 			tween.tween_property(self, "global_position", playable_area.position, 0.1).set_ease(Tween.EASE_OUT)
-			game_manager.show_play_button = true
-			game_manager.selected_card_index = get_parent().cards.find(self)
+			GameManager.show_play_button = true
+			GameManager.selected_card_index = get_parent().cards.find(self)
 		else:
 			if playable_area and playable_area.get_meta("card", null) == null:
-				game_manager.show_play_button = false
+				GameManager.show_play_button = false
 			else:
-				game_manager.show_play_button = true
+				GameManager.show_play_button = true
 			tween.tween_property(self, "position", slot_position, 0.1).set_ease(Tween.EASE_OUT)
 			tween.tween_property(self, "rotation_degrees", slot_rotation, 0.1).set_ease(Tween.EASE_OUT)
 
 
 func _on_button_mouse_entered() -> void:
 	is_hovering = true
-	game_manager.hovering_card_index = get_parent().cards.find(self)
+	GameManager.hovering_card_index = get_parent().cards.find(self)
 
 
 func _on_button_mouse_exited() -> void:
-	game_manager.hovering_card_index = -1
+	GameManager.hovering_card_index = -1
 	is_hovering = false
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("deck") and body.get_meta("card", null) == null:
+	if body.is_in_group("playable_area") and body.get_meta("card", null) == null:
 		body.set_meta("card", self)
 		is_inside_playable_area = true
 		playable_area = body
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("deck"):
+	if body.is_in_group("playable_area"):
 		if body.get_meta("card", null) == self:
 			body.set_meta("card", null)
 		is_inside_playable_area = false

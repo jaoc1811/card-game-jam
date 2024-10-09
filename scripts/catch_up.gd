@@ -4,9 +4,9 @@ extends Card
 
 func play(player_position: int):
 	## If the player's score is lower or equal than all other players, add 3 hours
-	var score = game_manager.players[player_position].clock
+	var score = GameManager.players[player_position].clock
 	var lowest = true
-	for player in game_manager.players:
+	for player in GameManager.players:
 		if player.clock < score:
 			lowest = false
 			break
