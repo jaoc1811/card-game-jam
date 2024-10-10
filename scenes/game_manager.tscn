@@ -13,12 +13,13 @@ script = ExtResource("1_v8cxg")
 num_of_players = 2
 players = [null, null]
 deck_type = {
-"catch_up": 6,
-"feeling_lucky": 6,
+"catch_up": 5,
+"feeling_lucky": 5,
 "hang_around": 10,
-"reverse_flow": 6,
-"robin_hood": 6,
-"time_investment": 6
+"reverse_flow": 5,
+"robin_hood": 5,
+"time_investment": 5,
+"time_loan": 5
 }
 
 [node name="DealCardSFX" type="AudioStreamPlayer2D" parent="."]
