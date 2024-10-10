@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://06p60rldx2f6"]
 
-[ext_resource type="Theme" uid="uid://q6cmt5cpvq2" path="res://themes/buton.tres" id="1_d4c53"]
-[ext_resource type="Script" path="res://scripts/how_to_play.gd" id="2_m0ecb"]
-[ext_resource type="Texture2D" uid="uid://uag8t02m0swj" path="res://sprites/silver coin/Silver_1.png" id="3_qqyox"]
+[ext_resource type="Theme" uid="uid://q6cmt5cpvq2" path="res://themes/buton.tres" id="1_w047x"]
+[ext_resource type="Script" path="res://scripts/how_to_play.gd" id="2_oqqdj"]
+[ext_resource type="Texture2D" uid="uid://c26mh7bdfup6b" path="res://sprites/PXL_20241009_030944919.jpg" id="3_fjifi"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,34 +11,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_d4c53")
-script = ExtResource("2_m0ecb")
+theme = ExtResource("1_w047x")
+script = ExtResource("2_oqqdj")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 652.0
-texture = ExtResource("3_qqyox")
+offset_right = 4032.0
+offset_bottom = 2268.0
+scale = Vector2(0.285063, 0.285406)
+texture = ExtResource("3_fjifi")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 59.0
+offset_bottom = 53.0
+scale = Vector2(27.6824, 15.4091)
 
 [node name="Title" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 227.0
-offset_top = 5.0
-offset_right = 1018.0
-offset_bottom = 112.0
+offset_left = 144.0
+offset_top = 32.0
+offset_right = 935.0
+offset_bottom = 139.0
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
-text = "[color=black]NOT GENERIC GAME 11[/color]"
+text = "[center]Midnight Wish[/center]"
 
 [node name="HowToPlayDescription" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 89.0
-offset_right = 1114.0
-offset_bottom = 583.0
+offset_left = 68.0
+offset_top = 136.0
+offset_right = 1176.0
+offset_bottom = 630.0
+scale = Vector2(0.911601, 0.939542)
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "[color=black]Goal: Whoever reaches 12:00 am on his/her clock wins!
+text = "Goal: Whoever reaches 12:00 am on his/her clock wins!
 All players will be dealt dealt 4 cards and a clock that starts at 12:00 pm.
 At the start of every turn but the first one all players will draw a card from a shared pile.
 Let’s play: 
@@ -50,8 +59,7 @@ Select a card to play this turn (you can only play one card by turn and you must
 Confirm your selected card for the turn.
 Show Phase: The effects of the cards resolve in player order until completion.
 Tick phase: all players have a number of hours/minutes that add passively at the end of the round to the clock. These are called the passive ticks.
-End phase: if one or more players reach 12:00 am by the end of the turn, all of them win!
-[/color]"
+End phase: if one or more players reach 12:00 am by the end of the turn, all of them win!"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 2

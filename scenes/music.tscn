@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpgnydmtfg8ob"]
 
-[ext_resource type="AudioStream" uid="uid://daxh2ubgrlr2g" path="res://music/Game Jam Oct v1.mp3" id="1_5woh0"]
+[ext_resource type="AudioStream" uid="uid://dxq5y534eiykt" path="res://music/Game Jam Oct v1.wav" id="1_rljg7"]
 
 [node name="Music" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_5woh0")
+stream = ExtResource("1_rljg7")
 autoplay = true
 bus = &"Music"
