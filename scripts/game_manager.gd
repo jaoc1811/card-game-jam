@@ -201,8 +201,7 @@ func check_clocks():
 		var win_text = "Winners:\n" if len(winners) > 1 else "Winner:\n"
 		win_text += ", ".join(winners)
 		win_screen.get_node("Win text").text = win_text
-		for children in win_screen.get_children():
-			children.show()
+		win_screen.show()
 
 
 func end_round():

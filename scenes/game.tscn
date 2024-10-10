@@ -434,28 +434,42 @@ scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_kgld5")
 animation = &"CoinFlipWin"
 
-[node name="Win screen" type="Node" parent="." groups=["win_screen"]]
+[node name="Win screen" type="Control" parent="." groups=["win_screen"]]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -115.0
+offset_top = -65.0
+offset_right = -75.0
+offset_bottom = -25.0
+scale = Vector2(5.75175, 3.23357)
 script = ExtResource("27_l0s2r")
 
+[node name="Panel" type="Panel" parent="Win screen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Win text" type="Label" parent="Win screen"]
-visible = false
 z_index = 20
-offset_left = -85.0
-offset_top = -39.0
-offset_right = 87.0
-offset_bottom = 36.0
+layout_mode = 0
+offset_left = 8.86687
+offset_top = 8.96841
+offset_right = 180.867
+offset_bottom = 83.9684
+scale = Vector2(0.138443, 0.260638)
 text = "Winners:
 Player 1, Player 2,  Player 3"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Back" type="Button" parent="Win screen"]
-visible = false
-offset_left = -22.0
-offset_top = 39.0
-offset_right = 48.0
-offset_bottom = 70.0
-scale = Vector2(0.679999, 0.64)
+layout_mode = 0
+offset_left = 16.3429
+offset_top = 31.2348
+offset_right = 86.3429
+offset_bottom = 62.2348
+scale = Vector2(0.117885, 0.14087)
 text = "Back"
 
 [connection signal="pressed" from="Win screen/Back" to="Win screen" method="_on_back_pressed"]
